@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
+import 'package:hackathon_app/pages/auth/signup/steps/emergency_access.dart';
 import '../../../controllers/signup_controller.dart';
 import '../../../pages/auth/signup/steps/medical_info.dart';
 import '../../../pages/auth/signup/steps/welcome.dart';
@@ -109,6 +110,8 @@ class SignupScreen extends StatelessWidget {
         return MedicalInfo();
       case 2:
         return _buildPersonalInfoStep();
+      case 3:
+        return EmergencyAccess();
       default:
         return const Welcome();
     }
@@ -186,7 +189,7 @@ class SignupScreen extends StatelessWidget {
   }
 
   void _handleContinue() {
-    if (controller.activeIndex.value < 2) {
+    if (controller.activeIndex.value < 3) {
       controller.activeIndex.value += 1;
     } else {
       // Complete signup process
