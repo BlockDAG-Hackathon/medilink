@@ -158,7 +158,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                       child: Btn(
                                         fontSize: 16,
                                         onClick: () =>
-                                            Get.offAllNamed("/login"),
+                                            Get.offAllNamed(AppPages.login),
                                         label: "Log in",
                                         fontWeight: FontWeight.w500,
                                       ),

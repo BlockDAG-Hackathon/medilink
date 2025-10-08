@@ -10,7 +10,7 @@ import 'package:hackathon_app/pages/auth/passphrase/secret_phrase_intro.dart';
 import 'package:hackathon_app/pages/auth/signup/signup.dart';
 import 'package:hackathon_app/pages/auth/splash.dart';
 import 'package:hackathon_app/pages/details.dart';
-import 'package:hackathon_app/pages/auth/login.dart';
+import 'package:hackathon_app/pages/auth/login/login.dart';
 import 'package:hackathon_app/pages/auth/create_password.dart';
 import 'package:hackathon_app/pages/onboarding.dart';
 import 'package:hackathon_app/pages/auth/signup/signup_options.dart';
@@ -31,7 +31,6 @@ class AppPages {
   static const confirmPhrase = '/passphrase/confirm-passphrase';
   static const completeWalletAuth = '/passphrase/complete-auth';
   static final List<GetPage> routes = [
-    // Correctly reference the static route names from RoutePaths
     GetPage(
       name: initial,
       page: () => SplashScreen(),
@@ -42,7 +41,6 @@ class AppPages {
     GetPage(
       name: home,
       page: () => HomeScreen(),
-      // Optional: Add a transition for flair
       transition: Transition.fadeIn,
     ),
     GetPage(name: onboarding, page: () => const OnboardingScreen()),

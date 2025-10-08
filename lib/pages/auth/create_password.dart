@@ -66,6 +66,7 @@ class CreatePasswordScreen extends StatelessWidget {
                   Input(hintText: "Enter your password", isPassword: true),
                   GestureDetector(
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Checkbox(
                           value: false,
