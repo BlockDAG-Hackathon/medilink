@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Action;
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hugeicons/hugeicons.dart';
+import '../../../ui/action_btn.dart';
 
 class HomeTab extends StatelessWidget {
   const HomeTab({super.key});
@@ -61,13 +62,14 @@ class HomeTab extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.only(bottom: 10),
+              margin: EdgeInsets.only(bottom: 10, top: 20),
               padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.white,
               ),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Action(
                     text: "My Records",
@@ -87,63 +89,145 @@ class HomeTab extends StatelessWidget {
                 ],
               ),
             ),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Upcoming appointments",
+                  style: GoogleFonts.poppins(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: (){},
+                  child: Text(
+                    "Add new +",
+                    style: GoogleFonts.poppins(
+                      color: Colors.blueAccent.shade400,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 10),
+              // height: Get.height * 0.15,
+              padding: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Babanla Hospital",
+                        style: GoogleFonts.poppins(
+                          color: Colors.black,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Text(
+                        "July 05, 2024 10:00AM",
+                        softWrap: true,
+                        style: GoogleFonts.poppins(
+                          color: Colors.black,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Babanla Hospital",
+                        style: GoogleFonts.poppins(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w300,
+                        ),
+                      ),
+                      Text(
+                        "July 05, 2024 10:00AM",
+                        softWrap: true,
+                        style: GoogleFonts.poppins(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w300,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 30),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    spacing: 10,
+                    children: [
+                      GestureDetector(
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 5,
+                            vertical: 3,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(3),
+                            border: Border.all(
+                              color: Colors.blueAccent.shade200,
+                            ),
+                          ),
+                          child: Text(
+                            "Cancel",
+                            style: GoogleFonts.poppins(
+                              color: Colors.blueAccent.shade200,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w300,
+                            ),
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                             horizontal: 5,
+                            vertical: 3,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(3),
+                            border: Border.all(
+                              color: Colors.blueAccent.shade200,
+                            ),
+                          ),
+                          child: Text(
+                            "Cancel",
+                            style: GoogleFonts.poppins(
+                              color: Colors.blueAccent.shade200,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w300,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+
+            // Stack(children: [Container(decoration: BoxDecoration(image: DecorationImage(image:AssetImage("assets/"))),)],)
           ],
         ),
-      ),
-    );
-  }
-}
-
-class Action extends StatelessWidget {
-  final String text;
-  final IconData? materialIcon;
-  final List<List<dynamic>>? hugeIcon;
-  final VoidCallback onClick;
-
-  Action({
-    super.key,
-    required this.text,
-    this.materialIcon,
-    this.hugeIcon,
-    required this.onClick,
-  }) : assert(
-         materialIcon != null || hugeIcon != null,
-         'Either materialIcon or hugeIcon must be provided',
-       );
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onClick,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SizedBox(
-            width: Get.width * 0.2,
-            height: Get.width * 0.2,
-            child: CircleAvatar(
-              backgroundColor: const Color(0x33030D43),
-              radius: Get.width * 0.1,
-              child: materialIcon != null
-                  ? Icon(materialIcon, color: const Color(0xFF030D43), size: 24)
-                  : HugeIcon(
-                      icon: hugeIcon!,
-                      color: const Color(0xFF030D43),
-                      size: 24,
-                    ),
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            text,
-            style: GoogleFonts.poppins(
-              color: const Color(0xFF010A38),
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ],
       ),
     );
   }

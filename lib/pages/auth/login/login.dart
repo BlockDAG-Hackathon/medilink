@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon_app/routes/app_routes.dart';
-import 'package:hackathon_app/ui/background.dart';
 import 'package:hackathon_app/ui/btn.dart';
+import 'package:hackathon_app/ui/deep_blue_gradient_background.dart';
 import '../../../ui/input.dart';
-import "package:hugeicons/hugeicons.dart";
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -29,7 +28,8 @@ class LoginScreen extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          Background(),
+          // Background(),
+          DeepBlueGradientBackground(),
           Container(
             padding: EdgeInsets.symmetric(horizontal:25, vertical: Get.height*0.1),
             child: Column(

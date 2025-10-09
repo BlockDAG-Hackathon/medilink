@@ -22,7 +22,6 @@ class SplashScreen extends StatelessWidget {
               "assets/backgrounds/background.png",
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {
-                print("SplashScreen: Error loading background image: $error");
                 return Container(color: Colors.black);
               },
             ),
@@ -33,7 +32,6 @@ class SplashScreen extends StatelessWidget {
               "assets/vectors/splash.png",
               width: Get.width * 0.7,
               errorBuilder: (context, error, stackTrace) {
-                print("SplashScreen: Error loading splash logo: $error");
                 return Icon(Icons.security, size: 100, color: Colors.white);
               },
             ),

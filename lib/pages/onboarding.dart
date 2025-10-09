@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon_app/routes/app_routes.dart';
-import 'package:hackathon_app/ui/background.dart';
 import 'package:hackathon_app/ui/btn.dart';
+import 'package:hackathon_app/ui/deep_blue_gradient_background.dart';
 import '../constants/utils.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -64,7 +64,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          Background(),
+          DeepBlueGradientBackground(),
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),

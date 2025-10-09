@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hackathon_app/ui/background.dart';
+
 import 'package:hackathon_app/ui/btn.dart';
+import 'package:hackathon_app/ui/deep_blue_gradient_background.dart';
 
 class NewWalletScreen extends StatelessWidget {
   const NewWalletScreen({super.key});
@@ -42,7 +43,7 @@ class NewWalletScreen extends StatelessWidget {
 
       body: Stack(
         children: [
-        Background(),
+        DeepBlueGradientBackground(),
           Column(
             children: [
               Image.asset("assets/ui/backup.png"),

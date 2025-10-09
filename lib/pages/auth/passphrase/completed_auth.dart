@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon_app/constants/utils.dart';
 import 'package:hackathon_app/routes/app_routes.dart';
-import 'package:hackathon_app/ui/background.dart';
 import 'package:hackathon_app/ui/btn.dart';
+import 'package:hackathon_app/ui/deep_blue_gradient_background.dart';
 
 class CompletedAuthScreen extends GetView<CompletionController> {
   const CompletedAuthScreen({super.key});
@@ -32,7 +32,7 @@ class CompletedAuthScreen extends GetView<CompletionController> {
       ),
       body: Stack(
         children: [
-          Background(),
+          DeepBlueGradientBackground(),
           Padding(
             padding: const EdgeInsets.all(25),
             child: Column(

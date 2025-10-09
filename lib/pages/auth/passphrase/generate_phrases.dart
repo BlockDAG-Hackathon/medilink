@@ -2,8 +2,9 @@ import "package:flutter/material.dart";
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon_app/routes/app_routes.dart';
-import 'package:hackathon_app/ui/background.dart';
+
 import 'package:hackathon_app/ui/btn.dart';
+import 'package:hackathon_app/ui/deep_blue_gradient_background.dart';
 import 'package:hugeicons/hugeicons.dart';
 
 class GeneratePhrasesScreen extends GetView {
@@ -49,7 +50,7 @@ class GeneratePhrasesScreen extends GetView {
       ),
       body: Stack(
         children: [
-          Background(),
+          DeepBlueGradientBackground(),
           Container(
             // Apply padding ONLY once on the parent container
             padding: EdgeInsets.symmetric(
