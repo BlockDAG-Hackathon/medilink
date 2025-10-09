@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:hackathon_app/pages/home/screens/consultations.dart';
 import 'package:hackathon_app/pages/home/screens/home_tab.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,11 @@ class HomeController extends GetxController {
   // Navigation Item Data structure
   final List<Map<String, dynamic>> navItems = const [
     {'label': 'Home', 'icon': HugeIcons.strokeRoundedHome04, 'activeIcon': HugeIcons.strokeRoundedHome04},
+    {
+      'label': 'Consultations',
+      'icon': HugeIcons.strokeRoundedChartBubble02,
+      'activeIcon': Icons.medical_services,
+    },
     {
       'label': 'Hospital',
       'icon': HugeIcons.strokeRoundedHospital02,
@@ -31,12 +37,7 @@ class HomeController extends GetxController {
   // Tab contents (moved here to centralize state logic)
   final List<Widget> widgetOptions = <Widget>[
     HomeTab(),
-    const Center(
-      child: Text(
-        "Complaints & Diagnosis History",
-        style: TextStyle(color: Colors.white, fontSize: 20),
-      ),
-    ),
+    ConsultationTab(),
     const Center(
       child: Text(
         "Wallet & Payment Section",

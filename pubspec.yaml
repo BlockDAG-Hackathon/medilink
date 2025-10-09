@@ -39,7 +39,8 @@ dependencies:
   google_fonts:
   hugeicons:
   curved_navigation_bar:
-
+  bodychart_heatmap:
+  svg_path_parser:
 dev_dependencies:
   flutter_test:
     sdk: flutter

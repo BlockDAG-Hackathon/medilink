@@ -18,10 +18,13 @@ class LoginScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         leading: Padding(
           padding: const EdgeInsets.only(left:25, top: 20),
-          child: Icon(
-             Icons.arrow_back,
-            color: Colors.white,
-            size: 25,
+          child: GestureDetector(
+            onTap: ()=>Get.back(),
+            child: Icon(
+               Icons.arrow_back,
+              color: Colors.white,
+              size: 25,
+            ),
           ),
         ),
         
@@ -71,7 +74,7 @@ class LoginScreen extends StatelessWidget {
                       child: Btn(
                         onClick: () {},
                         label: "Log in",
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w500,
                         bgColor: Colors.white,
                       ),
                     ),
@@ -80,9 +83,9 @@ class LoginScreen extends StatelessWidget {
                         Get.toNamed(AppPages.home);
                       },
                       child: Icon(
-                        Icons.qr_code_scanner,
+                        Icons.qr_code_scanner_outlined,
                         color: Colors.white,
-                        size: 60,
+                        size: 40,
                       ),
                     ),
                   ],

@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hugeicons/hugeicons.dart';
 import '../constants/utils.dart';
 
 class Btn extends StatelessWidget {
@@ -10,7 +11,8 @@ class Btn extends StatelessWidget {
   final double? fontSize;
   final Color? textColor;
   final IconData? icon;
-  final Color? bgColor; // CHANGED TYPE from int? to Color?
+  final Color? bgColor;
+  final List<List<dynamic>>? hugeIcon;
 
   Btn({
     super.key,
@@ -22,12 +24,11 @@ class Btn extends StatelessWidget {
     this.textColor,
     this.icon,
     this.bgColor,
+    this.hugeIcon,
   });
 
   @override
   Widget build(BuildContext context) {
-    // FIX: Simplified color assignment. If bgColor is null, it defaults to white.
-    // The bitwise operation is removed because bgColor is now already a Color.
     final Color finalBgColor = backgroundless
         ? Colors.transparent
         : bgColor ??
@@ -62,12 +63,16 @@ class Btn extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           spacing: 10,
           children: [
-            if (icon != null)
-              Icon(
-                icon,
-                size: 20,
-                color: finalTextColor, // Icon color
-              ),
+            if (icon != null || hugeIcon != null) ...[
+              if (hugeIcon != null)
+                HugeIcon(icon: hugeIcon!, size: 25, color: finalTextColor)
+              else if (icon != null)
+                Icon(
+                  icon,
+                  size: 20,
+                  color: finalTextColor, // Icon color
+                ),
+            ],
             Text(
               label,
               style: TextStyle(

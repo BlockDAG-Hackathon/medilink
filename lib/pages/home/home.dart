@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon_app/controllers/home_controller.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -33,10 +32,10 @@ class HomeScreen extends GetView<HomeController> {
         () => controller.widgetOptions.elementAt(controller.selectedIndex),
       ),
 
-      bottomNavigationBar: Obx(
+      bottomSheet: Obx(
         () => CurvedNavigationBar(
           index: controller.selectedIndex,
-          height: 65,
+          height: 70,
           backgroundColor: const Color(0xFFEEEEEE),
           color: Colors.white, // White navigation bar background
           buttonBackgroundColor: const Color(
@@ -45,6 +44,7 @@ class HomeScreen extends GetView<HomeController> {
           animationCurve: Curves.easeInOut,
           animationDuration: const Duration(milliseconds: 300),
           onTap: (index) => controller.onItemTapped(index),
+
           items: controller.navItems.map((item) {
             final isSelected =
                 controller.selectedIndex == controller.navItems.indexOf(item);

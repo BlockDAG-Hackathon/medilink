@@ -12,16 +12,40 @@ class HomeTab extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFFEEEEEE),
       appBar: AppBar(
+        leadingWidth: Get.width * 0.3,
         leading: Padding(
-          padding: EdgeInsets.only(top: 25, left: 25),
+          padding: EdgeInsets.only(top: 25, left: 25, bottom: 10),
+
           child: GestureDetector(
             onTap: () {},
-            child: HugeIcon(icon: HugeIcons.strokeRoundedUser02, size: 20),
+            child: Row(
+              spacing: 10,
+              children: [
+                // profie image
+                SizedBox(
+                  width: Get.width * 0.07,
+                  height: Get.width * 0.07,
+                  child: CircleAvatar(
+                    backgroundImage: AssetImage(
+                      "assets/backgrounds/background.png",
+                    ),
+                  ),
+                ),
+                Text(
+                  "Yusuf",
+                  style: GoogleFonts.poppins(
+                    color: Color(0xFF010A38),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(top: 25, right: 25),
+            padding: const EdgeInsets.only(top: 25, right: 25, bottom: 10),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               spacing: 5,
@@ -30,8 +54,9 @@ class HomeTab extends StatelessWidget {
                   onTap: () {},
                   child: HugeIcon(
                     icon: HugeIcons.strokeRoundedHelpCircle,
-                    size: 20,
+                    size: 25,
                     color: Color(0xFF010A38),
+                    strokeWidth: 2,
                   ),
                 ),
 
@@ -39,8 +64,9 @@ class HomeTab extends StatelessWidget {
                   onTap: () {},
                   child: Icon(
                     Icons.qr_code_scanner_outlined,
-                    size: 20,
+                    size: 25,
                     color: Color(0xFF010A38),
+                    weight: 2,
                   ),
                 ),
 
@@ -48,8 +74,9 @@ class HomeTab extends StatelessWidget {
                   onTap: () {},
                   child: HugeIcon(
                     icon: HugeIcons.strokeRoundedNotification01,
-                    size: 20,
+                    size: 25,
                     color: Color(0xFF010A38),
+                    strokeWidth: 2,
                   ),
                 ),
               ],
@@ -98,17 +125,17 @@ class HomeTab extends StatelessWidget {
                   style: GoogleFonts.poppins(
                     color: Colors.black,
                     fontSize: 16,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
                 GestureDetector(
-                  onTap: (){},
+                  onTap: () {},
                   child: Text(
                     "Add new +",
                     style: GoogleFonts.poppins(
                       color: Colors.blueAccent.shade400,
                       fontSize: 14,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
                 ),
@@ -129,19 +156,24 @@ class HomeTab extends StatelessWidget {
                     children: [
                       Text(
                         "Babanla Hospital",
+                        textAlign: TextAlign.right,
                         style: GoogleFonts.poppins(
                           color: Colors.black,
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      Text(
-                        "July 05, 2024 10:00AM",
-                        softWrap: true,
-                        style: GoogleFonts.poppins(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
+                      SizedBox(
+                        width: Get.width * 0.35,
+                        child: Text(
+                          "July 05, 2024 10:00AM",
+                          softWrap: true,
+                          textAlign: TextAlign.end,
+                          style: GoogleFonts.poppins(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
                     ],
@@ -152,20 +184,22 @@ class HomeTab extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Babanla Hospital",
+                        "Radiology",
                         style: GoogleFonts.poppins(
-                          color: Colors.black,
+                          color: Colors.blueAccent.shade200,
+
                           fontSize: 14,
-                          fontWeight: FontWeight.w300,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                       Text(
-                        "July 05, 2024 10:00AM",
+                        "10 min",
                         softWrap: true,
                         style: GoogleFonts.poppins(
-                          color: Colors.black,
                           fontSize: 14,
-                          fontWeight: FontWeight.w300,
+                          color: Colors.blueAccent.shade200,
+
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                     ],
@@ -185,6 +219,8 @@ class HomeTab extends StatelessWidget {
                             borderRadius: BorderRadius.circular(3),
                             border: Border.all(
                               color: Colors.blueAccent.shade200,
+                              width: 1,
+                              style: BorderStyle.solid,
                             ),
                           ),
                           child: Text(
@@ -192,7 +228,7 @@ class HomeTab extends StatelessWidget {
                             style: GoogleFonts.poppins(
                               color: Colors.blueAccent.shade200,
                               fontSize: 12,
-                              fontWeight: FontWeight.w300,
+                              fontWeight: FontWeight.w400,
                             ),
                           ),
                         ),
@@ -200,21 +236,23 @@ class HomeTab extends StatelessWidget {
                       GestureDetector(
                         child: Container(
                           padding: EdgeInsets.symmetric(
-                             horizontal: 5,
+                            horizontal: 5,
                             vertical: 3,
                           ),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
                             border: Border.all(
                               color: Colors.blueAccent.shade200,
+                              width: 1,
+                              style: BorderStyle.solid,
                             ),
                           ),
                           child: Text(
-                            "Cancel",
+                            "Reschedule",
                             style: GoogleFonts.poppins(
                               color: Colors.blueAccent.shade200,
                               fontSize: 12,
-                              fontWeight: FontWeight.w300,
+                              fontWeight: FontWeight.w400,
                             ),
                           ),
                         ),
@@ -225,7 +263,72 @@ class HomeTab extends StatelessWidget {
               ),
             ),
 
-            // Stack(children: [Container(decoration: BoxDecoration(image: DecorationImage(image:AssetImage("assets/"))),)],)
+            Stack(
+              children: [
+                Container(
+                  height: Get.height * 0.2,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    image: DecorationImage(
+                      image: NetworkImage(
+                        "https://images.unsplash.com/photo-1659353888477-6e6aab941b55?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                      ),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                Container(
+                  height: Get.height * 0.2,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Colors.transparent,
+                        Colors.black.withOpacity(0.7),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 10,
+                  left: 10,
+                  right: 10,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        "REMINDER",
+                        style: GoogleFonts.poppins(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Text(
+                        "Have yourself checked",
+                        style: GoogleFonts.poppins(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      Text(
+                        "Your medical records are between you and you alone!",
+                        softWrap: true,
+                        style: GoogleFonts.poppins(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w300,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),

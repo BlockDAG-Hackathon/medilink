@@ -93,7 +93,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
 
                   // Content Section - Fixed height to prevent overflow
-                  Container(
+                  SizedBox(
                     height: screenHeight * 0.35,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -137,47 +137,44 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         ),
 
                         // Buttons Section - Fixed at bottom
-                        Padding(
-                          padding: const EdgeInsets.only(top: 16, bottom: 16),
-                          child: isLastPage
-                              ? Row(
-                                  children: [
-                                    Expanded(
-                                      child: Btn(
-                                        onClick: () {
-                                          Get.offAllNamed(AppPages.auth);
-                                        },
-                                        fontSize: 16,
-                                        backgroundless: true,
-                                        label: "Sign up",
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                        isLastPage
+                            ? Row(
+                                children: [
+                                  Expanded(
+                                    child: Btn(
+                                      onClick: () {
+                                        Get.offAllNamed(AppPages.auth);
+                                      },
+                                      fontSize: 16,
+                                      backgroundless: true,
+                                      label: "Sign up",
+                                      fontWeight: FontWeight.w500,
                                     ),
-                                    const SizedBox(width: 12),
-                                    Expanded(
-                                      child: Btn(
-                                        fontSize: 16,
-                                        onClick: () =>
-                                            Get.offAllNamed(AppPages.login),
-                                        label: "Log in",
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                                  ),
+                                  const SizedBox(width: 12),
+                                  Expanded(
+                                    child: Btn(
+                                      fontSize: 16,
+                                      onClick: () =>
+                                          Get.offAllNamed(AppPages.login),
+                                      label: "Log in",
+                                      fontWeight: FontWeight.w500,
                                     ),
-                                  ],
-                                )
-                              : Btn(
-                                  onClick: () {
-                                    _pageController.nextPage(
-                                      duration: const Duration(
-                                        milliseconds: 400,
-                                      ),
-                                      curve: Curves.easeOut,
-                                    );
-                                  },
-                                  label: "Next",
-                                  fontWeight: FontWeight.w500,
-                                ),
-                        ),
+                                  ),
+                                ],
+                              )
+                            : Btn(
+                                onClick: () {
+                                  _pageController.nextPage(
+                                    duration: const Duration(milliseconds: 400),
+                                    curve: Curves.easeOut,
+                                  );
+                                },
+                                label: "Next",
+                                fontWeight: FontWeight.w500,
+                              ),
+
+                        SizedBox(height: 16),
                       ],
                     ),
                   ),

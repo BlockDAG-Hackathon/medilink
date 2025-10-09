@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:get/get.dart'; 
+import 'package:get/get.dart';
+
 class Input extends StatelessWidget {
   final String hintText;
   final bool isPassword;
@@ -8,6 +9,7 @@ class Input extends StatelessWidget {
   final TextInputType keyboardType;
   final Function(String)? onChanged;
   final IconData? suffixIcon;
+  final Color? color;
 
   late final RxBool _obscureText;
 
@@ -19,6 +21,7 @@ class Input extends StatelessWidget {
     this.keyboardType = TextInputType.text,
     this.onChanged,
     this.suffixIcon,
+    this.color,
   }) {
     // Initialize the RxBool based on the initial 'isPassword' value.
     _obscureText = isPassword.obs;
@@ -42,24 +45,23 @@ class Input extends StatelessWidget {
           onTap: _toggleObscureText,
           child: Icon(
             // Check the reactive state value
-            _obscureText.value ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+            _obscureText.value
+                ? Icons.visibility_off_outlined
+                : Icons.visibility_outlined,
             color: Colors.white54,
             size: 24,
           ),
         );
       } else if (suffixIcon != null) {
         // If a non-password icon is explicitly provided
-        suffixWidget = Icon(
-          suffixIcon,
-          color: Colors.white54,
-          size: 24,
-        );
+        suffixWidget = Icon(suffixIcon, color: Colors.white54, size: 24);
       }
 
       return Container(
         decoration: BoxDecoration(
-          color: const Color(0xFF2B2B2B), // Dark background color
+          color: color ?? const Color(0xFF2B2B2B), // Dark background color
           borderRadius: BorderRadius.circular(12),
+          border: color != null ? Border.all(color: Color(0xFF2B2B2B)) : null,
         ),
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
         child: TextField(
@@ -75,7 +77,7 @@ class Input extends StatelessWidget {
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: TextStyle(
-              color: Colors.white54,
+              color:color!=null?Colors.grey[500]: Colors.white54,
               fontSize: 18,
               fontFamily: GoogleFonts.poppins().fontFamily,
             ),
@@ -86,7 +88,10 @@ class Input extends StatelessWidget {
                     child: suffixWidget,
                   )
                 : null,
-            suffixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
+            suffixIconConstraints: const BoxConstraints(
+              minWidth: 0,
+              minHeight: 0,
+            ),
             contentPadding: const EdgeInsets.symmetric(vertical: 16.0),
           ),
         ),
