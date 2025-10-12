@@ -1,6 +1,7 @@
 flutter_native_splash:
   # Sets the full background image (used for older Android/iOS).
   background_image: "assets/backgrounds/background.png"
+  image: "assets/vectors/medilink_logo.png"
 
  
 
@@ -8,7 +9,9 @@ flutter_native_splash:
   android_12:
     
     background_image: "assets/backgrounds/background.png"
-    color: "#42a5f5"
+    image: "assets/vectors/medilink_logo.png"
+
+    color: "#030D43"
   
   # Enable splash screen generation for Android.
   android: true

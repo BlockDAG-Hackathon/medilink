@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon_app/pages/home/screens/consultation/body_chart_heatmap.dart';
 import 'package:hackathon_app/ui/btn.dart';
-import '../../../../widgets/bodychart_heatmap-.dart';
 import 'package:hackathon_app/ui/dropdown_bottom_sheet_dialog.dart';
 import 'package:hackathon_app/ui/input.dart';
 import 'package:hackathon_app/ui/textarea.dart';

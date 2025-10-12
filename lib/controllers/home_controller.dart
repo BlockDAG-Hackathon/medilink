@@ -1,7 +1,10 @@
 import 'package:get/get.dart';
 import 'package:hackathon_app/pages/home/screens/consultations.dart';
 import 'package:hackathon_app/pages/home/screens/home_tab.dart';
+import 'package:hackathon_app/pages/home/screens/hospital.dart';
+import 'package:hackathon_app/pages/home/screens/inbox.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:hackathon_app/pages/home/screens/me.dart';
 import 'package:flutter/material.dart';
 class HomeController extends GetxController {
   // Use .obs (Observable) for reactive state management
@@ -38,12 +41,9 @@ class HomeController extends GetxController {
   final List<Widget> widgetOptions = <Widget>[
     HomeTab(),
     ConsultationTab(),
-    const Center(
-      child: Text(
-        "Wallet & Payment Section",
-        style: TextStyle(color: Colors.white, fontSize: 20),
-      ),
-    ),
+    Hospital(),
+    Inbox(),
+    Me()
   ];
 
   void onItemTapped(int index) {

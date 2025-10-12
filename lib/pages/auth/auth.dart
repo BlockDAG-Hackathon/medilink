@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hackathon_app/routes/app_routes.dart';
 import 'package:hackathon_app/ui/btn.dart';
+import 'package:hackathon_app/controllers/wallet_controllers.dart';
 
 class AuthScreen extends StatelessWidget {
-  const AuthScreen({super.key});
+  AuthScreen({super.key});
+
+  final WalletController walletController = Get.put(WalletController());
 
   @override
   Widget build(BuildContext context) {
@@ -40,13 +43,17 @@ class AuthScreen extends StatelessWidget {
                     fontWeight: FontWeight.w300,
                   ),
                 ),
-                Btn(
-                  onClick: () {
-                    Get.toNamed(AppPages.passphrase);
-                  },
-                  label: "Create new wallet",
-                  fontWeight: FontWeight.w500,
-                  fontSize: 19.99,
+                Obx(
+                  () => Btn(
+                    onClick:(){
+                      Get.toNamed(AppPages.signup);
+                    },
+                    label: walletController.isLoading.value
+                        ? "Connecting..."
+                        : "Connect Wallet",
+                    fontWeight: FontWeight.w500,
+                    fontSize: 19.99,
+                  ),
                 ),
                 Row(
                   spacing: Get.width * 0.04,

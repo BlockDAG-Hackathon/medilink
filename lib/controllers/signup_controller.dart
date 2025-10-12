@@ -16,6 +16,9 @@ class SignupController extends GetxController {
   final existingConditions = ''.obs;
   final emergencyContact = ''.obs;
   
+  // Consent
+  final termsAccepted = false.obs;
+  
   // Dropdown options
   final List<String> genders = [
     'Select', 

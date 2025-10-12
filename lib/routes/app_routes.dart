@@ -53,7 +53,7 @@ class AppPages {
     GetPage(name: signupOptions, page: () => SignupOptionsScreen()),
     // Example of a route with a dynamic path parameter
     GetPage(name: details, page: () => const DetailsScreen()),
-    GetPage(name: auth, page: () => const AuthScreen()),
+    GetPage(name: auth, page: () =>  AuthScreen()),
     GetPage(name: passphrase, page: () => NewWalletScreen()),
     GetPage(name: confirmBackup, page: () => SecretPhraseIntroScreen()),
     GetPage(name: generatePassphrase, page: () => GeneratePhrasesScreen()),

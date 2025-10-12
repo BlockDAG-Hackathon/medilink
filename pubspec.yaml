@@ -41,6 +41,15 @@ dependencies:
   curved_navigation_bar:
   bodychart_heatmap:
   svg_path_parser:
+  path_drawing: 1.0.1
+  flutter_svg:
+  xml: ^6.5.0
+  dio:
+  wallet_connect_v2:
+  bip32:
+  bip39:
+  shared_preferences:
+  web3dart:
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,0 +1,79 @@
+<svg width="319" height="295" viewBox="0 0 319 295" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- Head -->
+<path id="head" name="head" d="M69 0L63 4V14H60.5V19.5C61.3333 20 63 21.2 63 22V30L69 34H79L84.5 30V22L87.5 19.5V14H84.5V4L79 0H69Z" fill="#CCCCCC"/>
+<path id="head_back" name="head" d="M229 20L230.5 28L234 24.5V20H245V24.5V28L250 26.5V18L252.5 14L250 13V4L243 0H234L227.5 7V11L225.5 14L229 20Z" fill="#CCCCCC"/>
+
+<!-- Neck -->
+<path id="neck_front_1" name="neck" d="M84.5 39.5V34L78 39.5V47H95.5L84.5 39.5Z" fill="#CCCCCC"/>
+<path id="neck_front_2" name="neck" d="M65 40.5V35L67 34L71 39.5L71.5 47H54L65 40.5Z" fill="#CCCCCC"/>
+<path id="neck_back_1" name="neck" d="M238.5 22.5H236L235 30.5L219 45H226L236 47L237 33L238.5 30.5V22.5Z" fill="#CCCCCC"/>
+<path id="neck_back_2" name="neck" d="M241.5 22.5H240V33L241.5 33.5L243 47.5L248.5 45L257 43.5L243.5 33.5L243 30.5L241.5 22.5Z" fill="#CCCCCC"/>
+
+<!-- Chest -->
+<path id="chest_left" name="chest" d="M71 73.5V55L57.5 50L51.5 63L47.5 67.5L61.5 75L71 73.5Z" fill="#CCCCCC"/>
+<path id="chest_right" name="chest" d="M77 54L86.5 50H92.5L98.5 64L102 66V68L85.5 75L77 73.5V54Z" fill="#CCCCCC"/>
+
+<!-- Shoulders -->
+<path id="shoulder_right_1" name="shoulder" d="M100 62.5L95.5 51L100.5 51.5L109 63.5V68L100 62.5Z" fill="#CCCCCC"/>
+<path id="shoulder_right_2" name="shoulder" d="M113.5 57.5L109 51H102.5L109 60L111.5 66.5H113.5V57.5Z" fill="#CCCCCC"/>
+<path id="shoulder_left_1" name="shoulder" d="M48.5 62.5L53.5 51C51.8333 51 48.5 51.1 48.5 51.5C48.5 51.9 43.1667 59 40.5 62.5V67L48.5 62.5Z" fill="#CCCCCC"/>
+<path id="shoulder_left_2" name="shoulder" d="M36.5 57V67L47 51H40.5L36.5 57Z" fill="#CCCCCC"/>
+<path id="shoulder_back_left" name="shoulder" d="M213.5 51.5L204.5 50.5L196.5 63.5H198.5L200 67.5L213.5 51.5Z" fill="#CCCCCC"/>
+<path id="shoulder_back_right" name="shoulder" d="M264 53.5L278.5 67.5L280 60L275 51.5L267.5 50.5L264 53.5Z" fill="#CCCCCC"/>
+
+<!-- Arms -->
+<path id="arm_right_1" name="arm" d="M110 70H101.5L102.5 81.5L105 87L111.5 93.5H115V87L110 70Z" fill="#CCCCCC"/>
+<path id="arm_right_2" name="arm" d="M119 79.5L115 74L115.5 93.5L117 94.5L120 91.5L119 79.5Z" fill="#CCCCCC"/>
+<path id="arm_right_3" name="arm" d="M114 103L107 98L106.506 93.5509L115.5 101V103H114Z" fill="#CCCCCC"/>
+<path id="arm_right_4" name="arm" d="M121 96H117.5V107L132.5 132L135 131L126.5 118V110L121 96Z" fill="#CCCCCC"/>
+<path id="arm_right_5" name="arm" d="M115 120.5L108 101L116 106.5L129.5 131L128 135L115 120.5Z" fill="#CCCCCC"/>
+<path id="arm_left_1" name="arm" d="M38 70H47L46 81.5L44 87L38 93.5509H34V96L30.5 92.5V81L34 74.5V87L38 70Z" fill="#CCCCCC"/>
+<path id="arm_left_2" name="arm" d="M42 98V93.5509L34 101L35.5 103L42 98Z" fill="#CCCCCC"/>
+<path id="arm_left_3" name="arm" d="M30.5 105V96H27L21 118L14.5 131L17 132L30.5 105Z" fill="#CCCCCC"/>
+<path id="arm_left_4" name="arm" d="M19.5 132L23 135L35.5 118L42 101L34 105L19.5 132Z" fill="#CCCCCC"/>
+
+<!-- Back Arms -->
+<path id="arm_back_right_1" name="arm" d="M270 87L272 67.5L282 77V95L278.5 96.5L275 98V95L270 87Z" fill="#CCCCCC"/>
+<path id="arm_back_right_2" name="arm" d="M283 104L279.5 99L278.5 104L274.5 103.5L279.5 118L288.5 127L283 115.5V104Z" fill="#CCCCCC"/>
+<path id="arm_back_right_3" name="arm" d="M285.5 118V101.5L290.5 103.5C292 110.5 295.1 124.7 295.5 125.5C295.9 126.3 298.333 130.5 299.5 132.5L298 135.5L296.5 138L285.5 118Z" fill="#CCCCCC"/>
+<path id="arm_back_left_1" name="arm" d="M207 87L205.5 67.5L195 78L194 95L201.5 96.5L207 87Z" fill="#CCCCCC"/>
+<path id="arm_back_left_2" name="arm" d="M200 103.5V99L195 101.5L194 115.5L189.5 127H192L200 115.5L203 103.5H200Z" fill="#CCCCCC"/>
+<path id="arm_back_left_3" name="arm" d="M183 125.5L189.5 101.5H194L192 115.5L187 128.5L182 136.5L178 132.5L183 125.5Z" fill="#CCCCCC"/>
+
+<!-- Abs/Torso -->
+<path id="abs_1" name="abs" d="M50 75.5V72L52 75.5H50Z" fill="#CCCCCC"/>
+<path id="abs_2" name="abs" d="M60 77L55.5 75.5L54.5 78L60 79.5V77Z" fill="#CCCCCC"/>
+<path id="abs_3" name="abs" d="M57 92L49.5 82.5V78.5L51.5 78L52 80L57.5 86.5L57 92Z" fill="#CCCCCC"/>
+<path id="abs_4" name="abs" d="M52.5 79.5V78L59 81L58 86L52.5 79.5Z" fill="#CCCCCC"/>
+<path id="abs_5" name="abs" d="M49.5 93.5V86.5L57.5 96V101H55.5L49.5 93.5Z" fill="#CCCCCC"/>
+
+<!-- Back -->
+<path id="back_upper_left" name="back" d="M220 47H212L219 52L225 67L236 75.5L235 52L220 47Z" fill="#CCCCCC"/>
+<path id="back_upper_right" name="back" d="M258 47L243 52V75.5L252 67L258 51L266 47H258Z" fill="#CCCCCC"/>
+<path id="back_side_right" name="back" d="M265 55.5H260L255.5 68.5L269.5 67V61L265 55.5Z" fill="#CCCCCC"/>
+<path id="back_side_left" name="back" d="M222.5 67L217.5 55.5H213L209 61V67H222.5Z" fill="#CCCCCC"/>
+<path id="back_lower_left" name="back" d="M222.5 73L209 71L222.5 114.5L237 125.5L235 83L222.5 73Z" fill="#CCCCCC"/>
+<path id="back_lower_right" name="back" d="M255.5 73L243 83L241.5 125.5L255.5 114.5L268.5 70L255.5 73Z" fill="#CCCCCC"/>
+
+<!-- Butt -->
+<path id="butt_right" name="butt" d="M254.5 118L251 122.5L258 125.5L263.5 133.5L264.5 131L262 121L254.5 118Z" fill="#CCCCCC"/>
+<path id="butt_left" name="butt" d="M227 122.5L223 118L216 121.5L213.5 133.5L215.5 132.5L220.5 125.5L227 122.5Z" fill="#CCCCCC"/>
+<path id="butt_lower_left" name="butt" d="M231 129L230 125.5L219 131L213.5 139V151.5L217.5 158L237.5 144.5L236.5 133.5L231 129Z" fill="#CCCCCC"/>
+<path id="butt_lower_right" name="butt" d="M240.5 144.5L242 132.5L249 126.5L258 129L264.5 140V152.5L262 156.5L260 158L258 154L251 151.5L240.5 144.5Z" fill="#CCCCCC"/>
+
+<!-- Legs -->
+<path id="leg_left_upper" name="leg" d="M49.5 123.5L52.5 126L51 164.5L60 199L54.5 164.5V143.5L64.5 166L63.5 198L60 199H57.5L47.5 166L49.5 123.5Z" fill="#CCCCCC"/>
+<path id="leg_right_upper" name="leg" d="M96 127L99 123.5L100.5 166L91.5 199H88.5H86L82.1556 169.206L82 168L80.5 162L93.5 131.5V142.5L82 168L82.1556 169.206L96 142.5L95 166L88.5 199L97.5 166L96 127Z" fill="#CCCCCC"/>
+
+<!-- Back Legs -->
+<path id="leg_back_left_upper" name="leg" d="M228 153.5L223.5 156.5V165.5L221.5 171.5V183.5L223.5 197.5L229.5 211L232 206L231 184.5L228 176V153.5Z" fill="#CCCCCC"/>
+<path id="leg_back_right_upper" name="leg" d="M250 176L248.5 153.5L253.5 154.5L254.5 159L256.5 168V183.5L253.5 198.5L251.5 203L250 208L248.5 211L246.5 207H245L246.5 187.5L250 176Z" fill="#CCCCCC"/>
+
+<!-- Hands -->
+<path id="hand_left" name="hand" d="M15.5 138L13.5 134.5L7 135L0 141.5L4 142L6 139.5L7 142L1 153L4 154L7 147L8.5 147.5L5.5 156H9L11 148L13 149L10.5 156L13.5 156.5L15.5 149H17L16.5 156.5L19 155.5L20 147.5L21 147L20.5 138H15.5Z" fill="#CCCCCC"/>
+<path id="hand_right" name="hand" d="M130.5 156.5L129 149.5V137.5H134V134H139L148.5 140V142H145L141.5 140L141 142.5L147.5 154L144.5 154.5L141.5 149L140.5 149.5L143.5 155.5L140 156L137.5 150H135.5L137.5 156H135L132.5 150L131.5 150.5L132.5 155.5L130.5 156.5Z" fill="#CCCCCC"/>
+
+<!-- Feet -->
+<path id="foot_left" name="foot" d="M71.5 291V276L63 277.5L58 288.5L65 291H67.5L68.5 287.5V291H71.5Z" fill="#CCCCCC"/>
+<path id="foot_right" name="foot" d="M77 291V274.5L83 276L91 285.5L89.5 290H84.5V292L77 291Z" fill="#CCCCCC"/>
+</svg>

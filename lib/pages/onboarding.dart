@@ -173,7 +173,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 label: "Next",
                                 fontWeight: FontWeight.w500,
                               ),
-
+                        
                         SizedBox(height: 16),
                       ],
                     ),

@@ -16,7 +16,6 @@ class DeepBlueGradientBackground extends StatelessWidget {
           stops: [0.0, 0.3, 1.0],
         ),
       ),
-      
     );
   }
 }

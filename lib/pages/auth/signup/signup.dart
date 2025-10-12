@@ -62,9 +62,13 @@ class SignupScreen extends StatelessWidget {
     const screenBackgroundColor = Color(0xFF121212);
 
     return Scaffold(
-      backgroundColor: screenBackgroundColor,
       body: SafeArea(
-        child: Padding(
+        child: Container(
+          margin: EdgeInsets.symmetric(
+            vertical: Get.height * 0.06,
+            horizontal: 20,
+          ),
+          color: Colors.white,
           padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
           child: Column(
             children: [

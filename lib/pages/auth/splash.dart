@@ -29,7 +29,8 @@ class SplashScreen extends StatelessWidget {
           // Logo
           Center(
             child: Image.asset(
-              "assets/vectors/splash.png",
+              "assets/vectors/medilink.png"
+              ,
               width: Get.width * 0.7,
               errorBuilder: (context, error, stackTrace) {
                 return Icon(Icons.security, size: 100, color: Colors.white);
