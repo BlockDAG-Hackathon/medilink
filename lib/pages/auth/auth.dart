@@ -1,32 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon_app/routes/app_routes.dart';
 import 'package:hackathon_app/ui/btn.dart';
-import 'package:hackathon_app/controllers/wallet_controllers.dart';
+import 'package:hackathon_app/ui/deep_blue_gradient_background.dart';
 
 class AuthScreen extends StatelessWidget {
   AuthScreen({super.key});
 
-  final WalletController walletController = Get.put(WalletController());
+  // final WalletController walletController = Get.put(WalletController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0),
       body: Stack(
         children: [
-          Image.asset(
-            "assets/backgrounds/background.png",
-            width: Get.width,
-            height: Get.height,
-            fit: BoxFit.cover,
-            opacity: const AlwaysStoppedAnimation(1.0),
-          ),
+          DeepBlueGradientBackground(),
           Container(
             padding: EdgeInsets.all(25),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.center,
               spacing: Get.width * 0.05,
               children: [
+                Image.asset(
+                  "assets/ui/auth.png",
+                  width: double.infinity,
+                  // height: Get.width * 0.5,
+                ),
                 Text(
                   "Create a New Wallet",
                   style: TextStyle(
@@ -43,18 +46,15 @@ class AuthScreen extends StatelessWidget {
                     fontWeight: FontWeight.w300,
                   ),
                 ),
-                Obx(
-                  () => Btn(
-                    onClick:(){
-                      Get.toNamed(AppPages.signup);
-                    },
-                    label: walletController.isLoading.value
-                        ? "Connecting..."
-                        : "Connect Wallet",
-                    fontWeight: FontWeight.w500,
-                    fontSize: 19.99,
-                  ),
+                Btn(
+                  onClick: () {
+                    Get.toNamed(AppPages.seedPhraseIntro);
+                  },
+                  label: "Connect Wallet",
+                  fontWeight: FontWeight.w500,
+                  fontSize: 19.99,
                 ),
+
                 Row(
                   spacing: Get.width * 0.04,
 
@@ -100,6 +100,26 @@ class AuthScreen extends StatelessWidget {
                         textColor: Colors.white,
                         icon: Icons.facebook,
                         backgroundless: true,
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  spacing: 5,
+                  mainAxisAlignment: MainAxisAlignment.center,
+
+                  children: [
+                    Text(
+                      "Already have an account?",
+                      style: GoogleFonts.poppins(color: Colors.white54),
+                    ),
+                    GestureDetector(
+                      child: Text(
+                        "Log in",
+                        style: GoogleFonts.poppins(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                     ),
                   ],

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon_app/controllers/signup_controller.dart';
-import '../../../../ui/input.dart';
+import '../widgets/input.dart';
 import '../../../../ui/dropdown.dart';
 
 class MedicalInfo extends StatelessWidget {
@@ -30,7 +30,7 @@ class MedicalInfo extends StatelessWidget {
         Text(
           "Medical Information",
           style: GoogleFonts.poppins(
-            color: Colors.white,
+            color: Color(0xFF041679),
             fontSize: 25,
             fontWeight: FontWeight.bold,
           ),
@@ -39,7 +39,7 @@ class MedicalInfo extends StatelessWidget {
         Text(
           "All information is securely encrypted.",
           style: GoogleFonts.poppins(
-            color: Colors.white54,
+            color: Color(0xFF041679),
             fontSize: 16,
             fontWeight: FontWeight.w300,
           ),
@@ -61,8 +61,6 @@ class MedicalInfo extends StatelessWidget {
         Input(
           hintText: 'e.g., Peanuts, Shellfish',
           controller: allergiesController,
-          keyboardType: TextInputType.text,
-          suffixIcon: Icons.warning_amber_outlined,
           onChanged: (value) => controller.allergies.value = value,
         ),
         const SizedBox(height: 24),
@@ -72,8 +70,6 @@ class MedicalInfo extends StatelessWidget {
         Input(
           hintText: 'e.g., Asthma, Diabetes',
           controller: existingConditionsController,
-          keyboardType: TextInputType.text,
-          suffixIcon: Icons.medical_services_outlined,
           onChanged: (value) => controller.existingConditions.value = value,
         ),
 
@@ -93,8 +89,6 @@ class MedicalInfo extends StatelessWidget {
         Input(
           hintText: '(+234) 9199 9999 99',
           controller: emergencyContactController,
-          keyboardType: TextInputType.phone,
-          suffixIcon: Icons.phone,
           onChanged: (value) => controller.emergencyContact.value = value,
         ),
       ],
@@ -107,7 +101,7 @@ class MedicalInfo extends StatelessWidget {
       child: Text(
         text,
         style: GoogleFonts.poppins(
-          color: const Color(0xFFEEEEEE),
+          color: Colors.black,
           fontSize: 16,
           fontWeight: FontWeight.w500,
         ),
@@ -115,3 +109,7 @@ class MedicalInfo extends StatelessWidget {
     );
   }
 }
+
+
+
+

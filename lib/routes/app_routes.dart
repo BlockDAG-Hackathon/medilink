@@ -14,6 +14,7 @@ import 'package:hackathon_app/pages/auth/login/login.dart';
 import 'package:hackathon_app/pages/auth/create_password.dart';
 import 'package:hackathon_app/pages/onboarding.dart';
 import 'package:hackathon_app/pages/auth/signup/signup_options.dart';
+import 'package:hackathon_app/pages/who_are_you.dart';
 
 class AppPages {
   static const initial = '/'; // Set initial route to a known path
@@ -26,10 +27,11 @@ class AppPages {
   static const auth = '/auth';
   static const createPassword = '/create-password';
   static const passphrase = '/passphrase/backup';
-  static const confirmBackup = '/passphrase/backup/confirm';
+  static const seedPhraseIntro = '/passphrase/backup/confirm';
   static const generatePassphrase = '/passphrase/generate-passphrase';
   static const confirmPhrase = '/passphrase/confirm-passphrase';
   static const completeWalletAuth = '/passphrase/complete-auth';
+  static const whoAreYou = '/auth/who-are-you';
   static final List<GetPage> routes = [
     GetPage(
       name: initial,
@@ -55,10 +57,11 @@ class AppPages {
     GetPage(name: details, page: () => const DetailsScreen()),
     GetPage(name: auth, page: () =>  AuthScreen()),
     GetPage(name: passphrase, page: () => NewWalletScreen()),
-    GetPage(name: confirmBackup, page: () => SecretPhraseIntroScreen()),
+    GetPage(name: seedPhraseIntro, page: () => SecretPhraseIntroScreen()),
     GetPage(name: generatePassphrase, page: () => GeneratePhrasesScreen()),
     GetPage(name: confirmPhrase, page: () => ConfirmSeedPhrasesScreen()),
     GetPage(name: completeWalletAuth, page: () => CompletedAuthScreen()),
     GetPage(name: createPassword, page: () => CreatePasswordScreen()),
+    GetPage(name: whoAreYou, page: () => WhoAreYouScreen()),
   ];
 }

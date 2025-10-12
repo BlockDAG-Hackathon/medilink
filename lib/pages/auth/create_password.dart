@@ -1,18 +1,76 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hackathon_app/routes/app_routes.dart';
 import 'package:hackathon_app/ui/btn.dart';
-import 'package:hackathon_app/ui/input.dart';
+import 'package:hackathon_app/ui/deep_blue_gradient_background.dart';
 import 'package:hugeicons/hugeicons.dart';
 
 class CreatePasswordScreen extends StatelessWidget {
   const CreatePasswordScreen({super.key});
+
+  Widget _buildCustomInput(String hintText, bool isPassword) {
+    final RxBool obscureText = isPassword.obs;
+
+    return Obx(() {
+      return Container(
+        decoration: BoxDecoration(
+          color: Colors.black.withOpacity(
+            0.4,
+          ), // Black background with 40% opacity
+          borderRadius: BorderRadius.circular(12),
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+        child: TextField(
+          obscureText: obscureText.value,
+          style: GoogleFonts.poppins(
+            color: Colors.white, // White text for visibility on dark background
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
+          ),
+          decoration: InputDecoration(
+            hintText: hintText,
+            hintStyle: GoogleFonts.poppins(
+              color: Colors.white.withOpacity(
+                0.6,
+              ), // Semi-transparent white hint
+              fontSize: 16,
+              fontWeight: FontWeight.w300,
+            ),
+            border: InputBorder.none,
+            suffixIcon: isPassword
+                ? GestureDetector(
+                    onTap: () => obscureText.value = !obscureText.value,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: Icon(
+                        obscureText.value
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined,
+                        color: Colors.white.withOpacity(0.7),
+                        size: 24,
+                      ),
+                    ),
+                  )
+                : null,
+            suffixIconConstraints: const BoxConstraints(
+              minWidth: 0,
+              minHeight: 0,
+            ),
+            contentPadding: const EdgeInsets.symmetric(vertical: 16.0),
+          ),
+        ),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         leading: HugeIcon(
           icon: HugeIcons.strokeRoundedExchange01,
           color: Colors.white,
@@ -21,13 +79,7 @@ class CreatePasswordScreen extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          Image.asset(
-            "assets/backgrounds/background.png",
-            width: Get.width,
-            height: Get.height,
-            fit: BoxFit.cover,
-            opacity: const AlwaysStoppedAnimation(1.0),
-          ),
+          DeepBlueGradientBackground(),
           SafeArea(
             child: Container(
               padding: EdgeInsets.all(24),
@@ -59,11 +111,9 @@ class CreatePasswordScreen extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 20),
-                  Input(
-                    hintText: "Enter your email/username",
-                    isPassword: false,
-                  ),
-                  Input(hintText: "Enter your password", isPassword: true),
+                  _buildCustomInput("Password", true),
+                  SizedBox(height: 10),
+                  _buildCustomInput("Confirm your password", true),
                   GestureDetector(
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -95,7 +145,9 @@ class CreatePasswordScreen extends StatelessWidget {
                   ),
 
                   Btn(
-                    onClick: () {},
+                    onClick: () {
+                      Get.toNamed(AppPages.signup);
+                    },
                     label: "Continue",
                     fontWeight: FontWeight.w600,
                     bgColor: Colors.white,

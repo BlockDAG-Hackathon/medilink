@@ -54,13 +54,13 @@ class HomeController extends GetxController {
   String getAppBarTitle() {
     switch (selectedIndex) {
       case 0:
-        return "BlockDag Health";
+        return "MediLink Health";
       case 1:
         return "My Complaints";
       case 2:
         return "BlockDA Wallet";
       default:
-        return "BlockDag Health";
+        return "MediLink Health";
     }
   }
 }

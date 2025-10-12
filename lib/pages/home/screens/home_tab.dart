@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hugeicons/hugeicons.dart';
 import '../../../ui/action_btn.dart';
+import '../../../widgets/profile_drawer.dart';
+import '../../../widgets/health_wallet.dart';
 import "../screens/notifications.dart";
 
 class HomeTab extends StatelessWidget {
@@ -342,6 +344,14 @@ class HomeTab extends StatelessWidget {
     );
   }
 
+  void _showProfileDrawer() {
+    Get.to(
+      () => const ProfileDrawer(),
+      transition: Transition.leftToRight,
+      duration: const Duration(milliseconds: 300),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -350,13 +360,12 @@ class HomeTab extends StatelessWidget {
         leadingWidth: Get.width * 0.3,
         leading: Padding(
           padding: EdgeInsets.only(top: 25, left: 25, bottom: 10),
-
           child: GestureDetector(
-            onTap: () {},
+            onTap: () => _showProfileDrawer(),
             child: Row(
               spacing: 10,
               children: [
-                // profie image
+                // profile image
                 SizedBox(
                   width: Get.width * 0.07,
                   height: Get.width * 0.07,
@@ -442,7 +451,13 @@ class HomeTab extends StatelessWidget {
                   ),
                   Action(
                     text: "Wallet",
-                    onClick: () {},
+                    onClick: () {
+                      Get.to(
+                        () => const HealthWallet(),
+                        transition: Transition.rightToLeft,
+                        duration: const Duration(milliseconds: 300),
+                      );
+                    },
                     hugeIcon: HugeIcons.strokeRoundedWallet03,
                   ),
                   Action(

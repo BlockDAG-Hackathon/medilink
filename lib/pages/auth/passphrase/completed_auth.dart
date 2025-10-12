@@ -101,9 +101,10 @@ class CompletionController extends GetxController {
     if (activeIndex.value < Utils.completionsData.length - 1) {
       // Move to next completion step
       activeIndex.value += 1;
+      
     } else {
       // Completed all steps, navigate to home
-      Get.toNamed(AppPages.signup);
+      Get.toNamed(AppPages.createPassword);
     }
   }
 

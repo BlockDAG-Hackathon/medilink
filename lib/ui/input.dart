@@ -48,20 +48,19 @@ class Input extends StatelessWidget {
             _obscureText.value
                 ? Icons.visibility_off_outlined
                 : Icons.visibility_outlined,
-            color: Colors.white54,
+            color: Colors.grey.shade600,
             size: 24,
           ),
         );
       } else if (suffixIcon != null) {
         // If a non-password icon is explicitly provided
-        suffixWidget = Icon(suffixIcon, color: Colors.white54, size: 24);
+        suffixWidget = Icon(suffixIcon, color: Colors.grey.shade600, size: 24);
       }
 
       return Container(
         decoration: BoxDecoration(
-          color: color ?? const Color(0xFF2B2B2B), // Dark background color
+          color: Colors.grey.shade300, // Grey background color
           borderRadius: BorderRadius.circular(12),
-          border: color != null ? Border.all(color: Color(0xFF2B2B2B)) : null,
         ),
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
         child: TextField(
@@ -70,16 +69,18 @@ class Input extends StatelessWidget {
           onChanged: onChanged,
           obscureText: _obscureText.value,
           style: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
+            color: Colors.grey.shade800, // Light black text
+            fontSize: 16,
             fontFamily: GoogleFonts.poppins().fontFamily,
+            fontWeight: FontWeight.w400,
           ),
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: TextStyle(
-              color:color!=null?Colors.grey[500]: Colors.white54,
-              fontSize: 18,
+              color: Colors.grey.shade600, // Light grey hint text
+              fontSize: 16,
               fontFamily: GoogleFonts.poppins().fontFamily,
+              fontWeight: FontWeight.w300,
             ),
             border: InputBorder.none, // Remove default underline border
             suffixIcon: suffixWidget != null

@@ -27,7 +27,7 @@ class CustomDropdown extends StatelessWidget {
           child: Text(
             labelText,
             style: GoogleFonts.poppins(
-              color: const Color(0xFFEEEEEE),
+              color: Colors.black,
               fontSize: 16,
               fontWeight: FontWeight.w500,
             ),
@@ -36,7 +36,7 @@ class CustomDropdown extends StatelessWidget {
         Container(
           height: 60, // Fixed height to match Input widget's visual size
           decoration: BoxDecoration(
-            color: const Color(0xFF2B2B2B), // Dark background color
+            color: Colors.grey.shade300, // Grey background color to match inputs
             borderRadius: BorderRadius.circular(12),
           ),
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -44,11 +44,12 @@ class CustomDropdown extends StatelessWidget {
             child: DropdownButton<String>(
               isExpanded: true,
               value: _getCurrentValue(),
-              icon: const Icon(Icons.keyboard_arrow_down, color: Colors.white54),
-              dropdownColor: const Color(0xFF2B2B2B), // Dropdown menu background
+              icon: Icon(Icons.keyboard_arrow_down, color: Colors.grey.shade600),
+              dropdownColor: Colors.grey.shade300, // Dropdown menu background
               style: GoogleFonts.poppins(
-                color: Colors.white,
-                fontSize: 18,
+                color: Colors.grey.shade800,
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
               ),
               onChanged: (String? newValue) {
                 if (newValue != null) {
@@ -61,8 +62,11 @@ class CustomDropdown extends StatelessWidget {
                   child: Text(
                     value,
                     style: GoogleFonts.poppins(
-                      color: value == 'Select' ? Colors.white54 : Colors.white,
-                      fontSize: 18,
+                      color: value == 'Select' 
+                          ? Colors.grey.shade600 
+                          : Colors.grey.shade800,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
                 );

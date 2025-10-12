@@ -15,7 +15,7 @@ class Consent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         const SizedBox(height: 48),
-        
+
         // Green checkmark circle
         Container(
           width: 120,
@@ -30,9 +30,9 @@ class Consent extends StatelessWidget {
             size: 60,
           ),
         ),
-        
+
         SizedBox(height: Get.height * 0.06),
-        
+
         // Title
         Text(
           "Consent and Data\nProtection",
@@ -44,9 +44,9 @@ class Consent extends StatelessWidget {
             height: 1.2,
           ),
         ),
-        
+
         const SizedBox(height: 24),
-        
+
         // Description text
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -61,103 +61,68 @@ class Consent extends StatelessWidget {
             ),
           ),
         ),
-        
+
         SizedBox(height: Get.height * 0.04),
-        
+
         // Checkbox with terms agreement
-        Obx(() => Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            GestureDetector(
-              onTap: () => controller.termsAccepted.toggle(),
-              child: Container(
-                width: 24,
-                height: 24,
-                decoration: BoxDecoration(
-                  color: controller.termsAccepted.value 
-                      ? const Color(0xFF041679) 
-                      : Colors.transparent,
-                  border: Border.all(
-                    color: const Color(0xFF041679),
-                    width: 2,
-                  ),
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                child: controller.termsAccepted.value
-                    ? const Icon(
-                        Icons.check,
-                        color: Colors.white,
-                        size: 16,
-                      )
-                    : null,
-              ),
-            ),
-            const SizedBox(width: 12),
-            Flexible(
-              child: RichText(
-                text: TextSpan(
-                  style: GoogleFonts.poppins(
-                    fontSize: 14,
-                    color: Colors.grey[700],
-                  ),
-                  children: [
-                    const TextSpan(text: "I agreed to the "),
-                    TextSpan(
-                      text: "Terms",
-                      style: GoogleFonts.poppins(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.w500,
-                      ),
+        Obx(
+          () => Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              GestureDetector(
+                onTap: () => controller.termsAccepted.toggle(),
+                child: Container(
+                  width: 24,
+                  height: 24,
+                  decoration: BoxDecoration(
+                    color: controller.termsAccepted.value
+                        ? const Color(0xFF041679)
+                        : Colors.transparent,
+                    border: Border.all(
+                      color: const Color(0xFF041679),
+                      width: 2,
                     ),
-                    const TextSpan(text: " and "),
-                    TextSpan(
-                      text: "Security Policy",
-                      style: GoogleFonts.poppins(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: controller.termsAccepted.value
+                      ? const Icon(Icons.check, color: Colors.white, size: 16)
+                      : null,
                 ),
               ),
-            ),
-          ],
-        )),
-        
-        SizedBox(height: Get.height * 0.04),
-        
-        // Accept & Continue button
-        Obx(() => Container(
-          width: double.infinity,
-          margin: const EdgeInsets.symmetric(horizontal: 20),
-          child: ElevatedButton(
-            onPressed: controller.termsAccepted.value 
-                ? () {
-                    // Handle accept and continue
-                    controller.nextStep();
-                  }
-                : null,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF041679),
-              disabledBackgroundColor: Colors.grey[300],
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+              const SizedBox(width: 12),
+              Flexible(
+                child: RichText(
+                  text: TextSpan(
+                    style: GoogleFonts.poppins(
+                      fontSize: 14,
+                      color: Colors.grey[700],
+                    ),
+                    children: [
+                      const TextSpan(text: "I agreed to the "),
+                      TextSpan(
+                        text: "Terms",
+                        style: GoogleFonts.poppins(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      const TextSpan(text: " and "),
+                      TextSpan(
+                        text: "Security Policy",
+                        style: GoogleFonts.poppins(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-              elevation: 0,
-            ),
-            child: Text(
-              "Accept & Continue",
-              style: GoogleFonts.poppins(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: controller.termsAccepted.value 
-                    ? Colors.white 
-                    : Colors.grey[600],
-              ),
-            ),
+            ],
           ),
-        )),
+        ),
+
+        SizedBox(height: Get.height * 0.04),
       ],
     );
   }

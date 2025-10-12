@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
+import 'package:hackathon_app/pages/auth/signup/steps/consent.dart';
 import 'package:hackathon_app/pages/auth/signup/steps/emergency_access.dart';
+import 'package:hackathon_app/ui/deep_blue_gradient_background.dart';
 import '../../../controllers/signup_controller.dart';
 import '../../../pages/auth/signup/steps/medical_info.dart';
 import '../../../pages/auth/signup/steps/welcome.dart';
@@ -32,7 +34,7 @@ class ProgressDots extends StatelessWidget {
             margin: const EdgeInsets.symmetric(horizontal: 4.0),
             decoration: BoxDecoration(
               color: isActive
-                  ? const Color(0xFF4C7FFF)
+                  ? const Color(0xFF041679)
                   : const Color(0xFF555555),
               borderRadius: BorderRadius.circular(2.5),
             ),
@@ -62,46 +64,68 @@ class SignupScreen extends StatelessWidget {
     const screenBackgroundColor = Color(0xFF121212);
 
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          margin: EdgeInsets.symmetric(
-            vertical: Get.height * 0.06,
-            horizontal: 20,
+      body: Stack(
+        children: [
+          DeepBlueGradientBackground(),
+          SafeArea(
+            child: Container(
+              margin: EdgeInsets.symmetric(
+                vertical: Get.height * 0.06,
+                horizontal: 20,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 24.0,
+                vertical: 32.0,
+              ),
+              child: Column(
+                children: [
+                  // Progress Dots
+                  Obx(
+                    () => ProgressDots(
+                      totalSteps: 5,
+                      currentStep: controller.activeIndex.value + 1,
+                    ),
+                  ),
+
+                  const SizedBox(height: 20),
+
+                  // Main Content Area
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Obx(() => _buildCurrentStep()),
+                    ),
+                  ),
+
+                  const SizedBox(height: 20),
+
+                  // Continue Button
+                  Obx(
+                    () {
+                      final isEnabled = _isButtonEnabled();
+                      final buttonLabel = _getButtonLabel();
+                      
+                      return Btn(
+                        onClick: isEnabled ? () => _handleContinue() : null,
+                        label: buttonLabel,
+                        fontWeight: FontWeight.w600,
+                        bgColor: isEnabled 
+                            ? const Color(0xFF041679) 
+                            : Colors.grey.shade300,
+                        textColor: isEnabled 
+                            ? Colors.white 
+                            : Colors.grey.shade600,
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
           ),
-          color: Colors.white,
-          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
-          child: Column(
-            children: [
-              // Progress Dots
-              Obx(
-                () => ProgressDots(
-                  totalSteps: 5,
-                  currentStep: controller.activeIndex.value + 1,
-                ),
-              ),
-
-              const SizedBox(height: 20),
-
-              // Main Content Area
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Obx(() => _buildCurrentStep()),
-                ),
-              ),
-
-              const SizedBox(height: 20),
-
-              // Continue Button
-              Obx(
-                () => Btn(
-                  onClick: () => _handleContinue(),
-                  label: _getButtonLabel(),
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ],
-          ),
-        ),
+        ],
       ),
     );
   }
@@ -116,6 +140,8 @@ class SignupScreen extends StatelessWidget {
         return _buildPersonalInfoStep();
       case 3:
         return EmergencyAccess();
+      case 4:
+        return Consent();
       default:
         return const Welcome();
     }
@@ -131,7 +157,7 @@ class SignupScreen extends StatelessWidget {
         Text(
           "Let's get to know you",
           style: GoogleFonts.poppins(
-            color: Colors.white,
+            color: const Color(0xFF041679),
             fontSize: 28,
             fontWeight: FontWeight.bold,
           ),
@@ -140,7 +166,7 @@ class SignupScreen extends StatelessWidget {
         Text(
           "Your privacy is our top priority.",
           style: GoogleFonts.poppins(
-            color: Colors.white54,
+            color: const Color(0xFF041679),
             fontSize: 16,
             fontWeight: FontWeight.w400,
           ),
@@ -193,20 +219,33 @@ class SignupScreen extends StatelessWidget {
   }
 
   void _handleContinue() {
-    if (controller.activeIndex.value < 3) {
+    if (controller.activeIndex.value < 4) {
       controller.activeIndex.value += 1;
     } else {
-      // Complete signup process
-      Get.offAllNamed("/home");
+      // Complete signup process (only if terms are accepted on consent step)
+      if (controller.activeIndex.value == 4 && controller.termsAccepted.value) {
+        Get.offAllNamed("/home");
+      }
     }
   }
 
   String _getButtonLabel() {
-    if (controller.activeIndex.value < 2) {
+    if (controller.activeIndex.value == 4) {
+      return "Accept & Continue";
+    } else if (controller.activeIndex.value < 4) {
       return "Continue";
     } else {
       return "Complete Signup";
     }
+  }
+
+  bool _isButtonEnabled() {
+    if (controller.activeIndex.value == 4) {
+      // On consent step, button is only enabled if terms are accepted
+      return controller.termsAccepted.value;
+    }
+    // For all other steps, button is always enabled
+    return true;
   }
 
   // Helper function for the form field labels
@@ -216,7 +255,7 @@ class SignupScreen extends StatelessWidget {
       child: Text(
         text,
         style: GoogleFonts.poppins(
-          color: const Color(0xFFEEEEEE),
+          color: Colors.black,
           fontSize: 16,
           fontWeight: FontWeight.w500,
         ),

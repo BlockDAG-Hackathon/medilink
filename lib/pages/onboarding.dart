@@ -143,7 +143,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                   Expanded(
                                     child: Btn(
                                       onClick: () {
-                                        Get.offAllNamed(AppPages.auth);
+                                        Get.toNamed(AppPages.auth);
                                       },
                                       fontSize: 16,
                                       backgroundless: true,
@@ -173,7 +173,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 label: "Next",
                                 fontWeight: FontWeight.w500,
                               ),
-                        
+
                         SizedBox(height: 16),
                       ],
                     ),

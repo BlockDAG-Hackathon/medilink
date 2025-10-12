@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:hackathon_app/ui/btn.dart';
+import 'package:hackathon_app/ui/deep_blue_gradient_background.dart';
 
 class SignupOptionsScreen extends StatelessWidget {
   const SignupOptionsScreen({super.key});
@@ -8,15 +8,11 @@ class SignupOptionsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0),
       body: Stack(
         children: [
-          Image.asset(
-            "assets/backgrounds/background.png",
-            width: Get.width,
-            height: Get.height,
-            fit: BoxFit.cover,
-            opacity: const AlwaysStoppedAnimation(1.0),
-          ),
+          DeepBlueGradientBackground(),
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [

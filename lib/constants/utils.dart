@@ -14,7 +14,7 @@ class Utils {
   static final List<dynamic> onboarding = [
     {
       "image": "assets/ui/welcome.png",
-      "title": "Welcome to BlockDAG",
+      "title": "Welcome to MediLink",
       "desc":
           "Securely store, share, and protect your personal records with blockchain-grade security. You decide who gets access - and when",
     },
@@ -40,7 +40,7 @@ class Utils {
 
   // phrase checks
   static final List<String> phraseChecks = [
-    "BlockDAG do not keep a copy of your secret phrase",
+    "MediLink do not keep a copy of your secret phrase",
     "Saving this digitally is not recommended e.g screenshots, text files or emailing yourself",
     "Write down your secret phrase, and store it in a secure offline location!",
   ];
@@ -54,13 +54,13 @@ class Utils {
     {
       "title": "Login Successful",
       "desc": "Your account has been verified. \n Welcome back, Ultra",
-      "label": "Continue using BlockDAG",
+      "label": "Continue using MediLink",
     },
     {
       "title": "Welcome aboard",
       "desc":
           "Your account is now ready to use. Dive and start your medical journey. Stay safe!",
-      "label": "Start using BlockDAG",
+      "label": "Start using MediLink",
     },
   ];
 

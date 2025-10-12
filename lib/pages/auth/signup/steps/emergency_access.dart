@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon_app/controllers/signup_controller.dart';
 
-
 class EmergencyAccess extends StatelessWidget {
   EmergencyAccess({super.key});
 
@@ -29,7 +28,8 @@ class EmergencyAccess extends StatelessWidget {
         Text(
           "Emergency Access",
           style: GoogleFonts.poppins(
-            color: Colors.white,
+            color: Color(0xFF041679),
+
             fontSize: 25,
             fontWeight: FontWeight.bold,
           ),
@@ -38,7 +38,8 @@ class EmergencyAccess extends StatelessWidget {
         Text(
           "Who can view your medical data in an emergency.",
           style: GoogleFonts.poppins(
-            color: Colors.white54,
+            color: Color(0xFF041679),
+
             fontSize: 16,
             fontWeight: FontWeight.w300,
           ),
@@ -59,7 +60,7 @@ class EmergencyAccess extends StatelessWidget {
                     padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Colors.white,
+                      color: Colors.grey.shade300,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

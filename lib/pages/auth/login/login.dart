@@ -54,7 +54,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     Text(
                       textAlign: TextAlign.center,
-                      "Your medical data is encrypted and secured safely on BlockDAG chain",
+                      "Your medical data is encrypted and secured safely on MediLink chain",
                       style: GoogleFonts.poppins(
                         fontSize: 16,
                         fontWeight: FontWeight.w300,

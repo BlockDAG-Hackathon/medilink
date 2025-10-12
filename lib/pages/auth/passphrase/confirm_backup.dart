@@ -65,7 +65,7 @@ class NewWalletScreen extends StatelessWidget {
                 Spacer(flex: 1),
                 Btn(
                   onClick: () {
-                    Get.toNamed(AppPages.confirmBackup);
+                    Get.toNamed(AppPages.completeWalletAuth);
                   },
                   label: "Backup manually",
                   fontWeight: FontWeight.w500,

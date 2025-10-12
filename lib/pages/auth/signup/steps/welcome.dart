@@ -16,25 +16,21 @@ class Welcome extends StatelessWidget {
           width: Get.width * 0.4,
           height: Get.width * 0.4,
           decoration: BoxDecoration(
-            color: const Color(0x80041679),
+            color: const Color(0xFF041679),
             borderRadius: BorderRadius.circular(Get.width * 1),
           ),
-          child: const Icon(
-            Icons.security,
-            color: Colors.white,
-            size: 80,
-          ),
+          child: Image.asset("assets/ui/auth-welcome.png"),
         ),
         
         SizedBox(height: Get.height * 0.08),
         
         Text(
-          "Welcome to BlockDAG",
+          "Welcome to MediLink",
           textAlign: TextAlign.center,
           style: GoogleFonts.poppins(
             fontSize: 28,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: Color(0xFF041679),
           ),
         ),
         
@@ -49,7 +45,8 @@ class Welcome extends StatelessWidget {
             style: GoogleFonts.poppins(
               fontSize: 16,
               fontWeight: FontWeight.w300,
-              color: Colors.white70,
+                         color: Color(0xFF6B6B6B),
+
               height: 1.5,
             ),
           ),
