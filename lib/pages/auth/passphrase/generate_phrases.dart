@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon_app/routes/app_routes.dart';
@@ -13,10 +14,18 @@ class GeneratePhrasesScreen extends GetView {
   // Define the padding and spacing constants once
   static const double horizontalContainerPadding = 30.0;
   static const double wrapItemSpacing = 10.0;
-  static final List<String> recoveryWords = List.generate(
-    12,
-    (index) => "word ${index + 1}",
-  );
+
+  List<String> get recoveryWords {
+    final arguments = Get.arguments as Map<String, dynamic>?;
+    final seedPhrase = arguments?['seedPhrase'] as String?;
+
+    if (seedPhrase != null && seedPhrase.isNotEmpty) {
+      return seedPhrase.split(' ');
+    }
+
+    // Fallback to placeholder words if no seed phrase is provided
+    return List.generate(12, (index) => "word ${index + 1}");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +55,9 @@ class GeneratePhrasesScreen extends GetView {
         ),
         centerTitle: true,
         actionsPadding: EdgeInsets.only(top: 20, right: 20),
-        actions: [Icon(Icons.error, color: Colors.white.withOpacity(0.2))],
+        actions: [
+          Icon(Icons.error, color: Colors.white.withValues(alpha: 0.2)),
+        ],
       ),
       body: Stack(
         children: [
@@ -74,9 +85,10 @@ class GeneratePhrasesScreen extends GetView {
                       spacing: wrapItemSpacing,
                       runSpacing:
                           wrapItemSpacing, // Use a named constant for clarity
-                      children: recoveryWords.map((word) {
-                        final int entry =
-                            recoveryWords.indexOf(word) + 1; // 1-based index
+                      children: recoveryWords.asMap().entries.map((entry) {
+                        final int index = entry.key;
+                        final String word = entry.value;
+                        final int displayNumber = index + 1; // 1-based index
 
                         return Container(
                           // Use the calculated width
@@ -94,7 +106,10 @@ class GeneratePhrasesScreen extends GetView {
                             // Fixed the invalid 'spacing: 2' property in Row
                             children: [
                               Text(
-                                "${entry.toString().padLeft(2, '0')}", // Ensure 0-padding
+                                displayNumber.toString().padLeft(
+                                  2,
+                                  '0',
+                                ), // Ensure 0-padding
                                 style: TextStyle(
                                   color: const Color(0xFFD9D9D9),
                                   fontFamily: GoogleFonts.poppins.toString(),
@@ -127,6 +142,18 @@ class GeneratePhrasesScreen extends GetView {
                 ),
 
                 GestureDetector(
+                  onTap: () async {
+                    final seedPhrase = recoveryWords.join(' ');
+                    await Clipboard.setData(ClipboardData(text: seedPhrase));
+                    Get.snackbar(
+                      'Copied!',
+                      'Seed phrase copied to clipboard',
+                      snackPosition: SnackPosition.BOTTOM,
+                      backgroundColor: Colors.green.withValues(alpha: 0.8),
+                      colorText: Colors.white,
+                      duration: Duration(seconds: 2),
+                    );
+                  },
                   child: Container(
                     margin: EdgeInsets.only(top: 20),
                     padding: EdgeInsets.symmetric(vertical: 10),
@@ -182,7 +209,15 @@ class GeneratePhrasesScreen extends GetView {
                 ),
                 Btn(
                   onClick: () {
-                    Get.toNamed(AppPages.confirmPhrase);
+                    // Pass the seed phrase to the next screen for confirmation
+                    final arguments = Get.arguments as Map<String, dynamic>?;
+                    Get.toNamed(
+                      AppPages.confirmPhrase,
+                      arguments: {
+                        'seedPhrase': recoveryWords.join(' '),
+                        'walletAddress': arguments?['walletAddress'],
+                      },
+                    );
                   },
                   label: "Continue",
                   textColor: Color(0xFF041679),

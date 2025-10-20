@@ -5,7 +5,6 @@ import 'package:hackathon_app/controllers/wallet_controller.dart';
 import 'package:hackathon_app/routes/app_routes.dart';
 import 'package:hackathon_app/ui/btn.dart';
 import 'package:hackathon_app/ui/deep_blue_gradient_background.dart';
-import 'package:reown_appkit/appkit_modal.dart';
 
 class AuthScreen extends StatelessWidget {
   AuthScreen({super.key});
@@ -49,14 +48,21 @@ class AuthScreen extends StatelessWidget {
                   ),
                 ),
 
-                Btn(
-                  onClick: () {
-                    walletController.appKitModal.openModalView();
-                    walletController.onWalletConnection();
-                  },
-                  label: "Connect Wallet",
-                  fontWeight: FontWeight.w500,
-                  fontSize: 19.99,
+              
+
+                Obx(
+                  () => Btn(
+                    onClick: walletController.isGeneratingSeedphrase.value
+                        ? null
+                        : () {
+                            walletController.onWalletConnection();
+                          },
+                    label: walletController.isGeneratingSeedphrase.value
+                        ? "Generating..."
+                        : "Connect Wallet",
+                    fontWeight: FontWeight.w500,
+                    fontSize: 19.99,
+                  ),
                 ),
                 Row(
                   spacing: Get.width * 0.04,
