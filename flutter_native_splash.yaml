@@ -9,7 +9,7 @@ flutter_native_splash:
   android_12:
     
     background_image: "assets/backgrounds/background.png"
-    image: "assets/vectors/medilink_logo.png"
+    image: "assets/vectors/medilink.png"
 
     color: "#030D43"
   

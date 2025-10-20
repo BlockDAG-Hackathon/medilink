@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hackathon_app/routes/app_routes.dart';
 import 'package:hackathon_app/ui/deep_blue_gradient_background.dart';
+import 'package:hackathon_app/controllers/user_controller.dart';
 import 'package:hugeicons/hugeicons.dart';
 
 class WhoAreYouScreen extends StatefulWidget {
@@ -16,7 +18,8 @@ class _WhoAreYouScreenState extends State<WhoAreYouScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
+    final screenHeight = Get.height;
+    final userController = Get.put(UserController());
 
     return Scaffold(
       body: Stack(
@@ -27,8 +30,19 @@ class _WhoAreYouScreenState extends State<WhoAreYouScreen> {
               padding: const EdgeInsets.all(24.0),
               child: Column(
                 children: [
-                  Image.asset("assets/ui/who.png", width: Get.width * 0.9),
-                  SizedBox(height: screenHeight * 0.045),
+                  // Image Section
+                  SizedBox(
+                    height: screenHeight * 0.25,
+                    child: Center(
+                      child: Image.asset(
+                        "assets/ui/who.png",
+                        width: Get.width * 0.8,
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(height: screenHeight * 0.03),
 
                   // Title
                   Text(
@@ -47,125 +61,153 @@ class _WhoAreYouScreenState extends State<WhoAreYouScreen> {
                   Text(
                     "This will help us tailor your experience",
                     style: GoogleFonts.poppins(
-                      color: Colors.white.withOpacity(0.7),
+                      color: Colors.white.withValues(alpha: 0.7),
                       fontWeight: FontWeight.w400,
                       fontSize: 16,
                     ),
                     textAlign: TextAlign.center,
                   ),
 
-                  SizedBox(height: screenHeight * 0.07),
+                  SizedBox(height: screenHeight * 0.04),
 
-                  // Options
-                  ...List.generate(options.length, (index) {
-                    final option = options[index];
-                    final isSelected = selectedOption == index;
+                  // Options Container with fixed height
+                  Container(
+                    // padding: EdgeInsets.only(bottom: 10),
+                    color: Colors.transparent,
+                    child: Column(
+                      spacing: 12,
+                      children: [
+                        ...List.generate(options.length, (index) {
+                          final option = options[index];
+                          final isSelected = selectedOption == index;
 
-                    return Container(
-                      width: double.infinity,
-                      margin: const EdgeInsets.only(bottom: 16),
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selectedOption = index;
-                          });
-                        },
-                        child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 200),
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 20,
-                            vertical: 18,
-                          ),
-                          decoration: BoxDecoration(
-                            color: isSelected
-                                ? Colors.white.withOpacity(0.1)
-                                : Colors.transparent,
-                            borderRadius: BorderRadius.circular(16),
-                            border: Border.all(
-                              color: isSelected
-                                  ? Colors.white
-                                  : Colors.white.withOpacity(0.3),
-                              width: isSelected ? 2 : 1,
-                            ),
-                          ),
-                          child: Row(
-                            children: [
-                              Container(
-                                width: 40,
-                                height: 40,
-                                decoration: BoxDecoration(
-                                  color: option["iconBg"],
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Center(
-                                  child: SizedBox(
-                                    width: 20,
-                                    height: 20,
-                                    child:
-                                        option["icon"].runtimeType == IconData
-                                        ? Icon(
-                                            option["icon"],
-                                            color: Colors.white,
-                                            // size: 15,
-                                          )
-                                        : HugeIcon(
-                                            icon: option["icon"] as List<List<dynamic>>,
-                                            color: Colors.white,
-                                            // size: 15,
+                          return Container(
+                            width: double.infinity,
+                            child: Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    selectedOption = index;
+                                  });
+                                },
+                                borderRadius: BorderRadius.circular(16),
+                                child: AnimatedContainer(
+                                  duration: const Duration(milliseconds: 200),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 20,
+                                    vertical: 18,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: isSelected
+                                        ? Colors.white.withValues(alpha: 0.1)
+                                        : Colors.transparent,
+                                    borderRadius: BorderRadius.circular(16),
+                                    border: Border.all(
+                                      color: isSelected
+                                          ? Colors.white
+                                          : Colors.white.withValues(alpha: 0.3),
+                                      width: isSelected ? 2 : 1,
+                                    ),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        width: 40,
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                          color: option["iconBg"],
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: Center(
+                                          child: SizedBox(
+                                            width: 20,
+                                            height: 20,
+                                            child:
+                                                option["icon"].runtimeType ==
+                                                    IconData
+                                                ? Icon(
+                                                    option["icon"],
+                                                    color: Colors.white,
+                                                    size: 20,
+                                                  )
+                                                : HugeIcon(
+                                                    icon:
+                                                        option["icon"]
+                                                            as List<
+                                                              List<dynamic>
+                                                            >,
+                                                    color: Colors.white,
+                                                    size: 20,
+                                                    strokeWidth: 2,
+                                                  ),
                                           ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 16),
+                                      Expanded(
+                                        child: Text(
+                                          option["text"],
+                                          style: GoogleFonts.poppins(
+                                            color: Colors.white,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
-                              const SizedBox(width: 16),
-                              Text(
-                                option["text"],
-                                style: GoogleFonts.poppins(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
-                  }),
+                            ),
+                          );
+                        }),
+                      ],
+                    ),
+                  ),
 
-                  const Spacer(),
+                  // Fixed spacing before button
+                  SizedBox(height: screenHeight * 0.1),
 
                   // Continue Button
-                  Container(
+                  SizedBox(
                     width: double.infinity,
-                    margin: const EdgeInsets.only(bottom: 20),
                     child: ElevatedButton(
-                      onPressed: selectedOption != null
-                          ? () {
-                              // Handle continue action
-                              Get.toNamed('/signup');
-                            }
-                          : null,
+                      onPressed: () {
+                        if (selectedOption != null ) {
+                          // Store user type selection
+                          userController.setUserType(
+                            options[selectedOption!]["text"],
+                          );
+                          Get.toNamed(AppPages.auth);
+                        } else {
+                          return;
+                        }
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
-                        disabledBackgroundColor: Colors.white.withOpacity(0.3),
+                        foregroundColor: selectedOption != null
+                            ? const Color(0xFF041679)
+                            : Colors.grey[600],
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
                         ),
-                        elevation: 0,
+                        elevation: 2,
+                        shadowColor: Colors.white.withValues(alpha: 0.3),
                       ),
                       child: Text(
                         "Continue",
                         style: GoogleFonts.poppins(
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
-                          color: selectedOption != null
-                              ? const Color(0xFF041679)
-                              : Colors.grey[600],
                         ),
                       ),
                     ),
                   ),
+
+                  // Bottom padding for safe area
+                  SizedBox(height: 20),
                 ],
               ),
             ),

@@ -366,12 +366,17 @@ class HomeTab extends StatelessWidget {
               spacing: 10,
               children: [
                 // profile image
-                SizedBox(
-                  width: Get.width * 0.07,
-                  height: Get.width * 0.07,
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage(
-                      "assets/backgrounds/background.png",
+                Container(
+                  width: Get.width * 0.08,
+                  height: Get.width * 0.08,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: const DecorationImage(
+                      image: NetworkImage(
+                        "https://img.freepik.com/free-vector/hand-drawn-nft-style-ape-illustration_23-2149622021.jpg?semt=ais_hybrid&w=740&q=80",
+                      ),
+                      fit: BoxFit
+                          .cover, // Ensures image covers the full container without overflow
                     ),
                   ),
                 ),

@@ -359,8 +359,6 @@ static String heartIcon ='''<svg width="250" height="300" viewBox="0 0 250 300" 
       color: Colors.amber,
     ),
   ];
-
-
    
   static List<String> inbox_filters = [
     'All',
@@ -486,5 +484,7 @@ static String heartIcon ='''<svg width="250" height="300" viewBox="0 0 250 300" 
     ),
   ];
 
+
+  static  String baseUrlEmulator = 'http://10.0.2.2:4400/api';
 
 }

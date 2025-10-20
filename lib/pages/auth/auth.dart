@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hackathon_app/controllers/wallet_controller.dart';
 import 'package:hackathon_app/routes/app_routes.dart';
 import 'package:hackathon_app/ui/btn.dart';
 import 'package:hackathon_app/ui/deep_blue_gradient_background.dart';
+import 'package:reown_appkit/appkit_modal.dart';
 
 class AuthScreen extends StatelessWidget {
   AuthScreen({super.key});
 
-  // final WalletController walletController = Get.put(WalletController());
+  final WalletController walletController = Get.put(WalletController());
 
   @override
   Widget build(BuildContext context) {
@@ -46,15 +48,16 @@ class AuthScreen extends StatelessWidget {
                     fontWeight: FontWeight.w300,
                   ),
                 ),
+
                 Btn(
                   onClick: () {
-                    Get.toNamed(AppPages.seedPhraseIntro);
+                    walletController.appKitModal.openModalView();
+                    walletController.onWalletConnection();
                   },
                   label: "Connect Wallet",
                   fontWeight: FontWeight.w500,
                   fontSize: 19.99,
                 ),
-
                 Row(
                   spacing: Get.width * 0.04,
 
@@ -114,6 +117,9 @@ class AuthScreen extends StatelessWidget {
                       style: GoogleFonts.poppins(color: Colors.white54),
                     ),
                     GestureDetector(
+                      onTap: () {
+                        Get.toNamed(AppPages.login);
+                      },
                       child: Text(
                         "Log in",
                         style: GoogleFonts.poppins(

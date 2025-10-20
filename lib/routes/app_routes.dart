@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:hackathon_app/controllers/splash_controllers.dart';
 import 'package:hackathon_app/pages/home/home.dart';
+import 'package:hackathon_app/pages/doctor/doc_home.dart';
 import 'package:hackathon_app/pages/auth/auth.dart';
 import 'package:hackathon_app/pages/auth/passphrase/completed_auth.dart';
 import 'package:hackathon_app/pages/auth/passphrase/confirm_backup.dart';
@@ -19,6 +20,7 @@ import 'package:hackathon_app/pages/who_are_you.dart';
 class AppPages {
   static const initial = '/'; // Set initial route to a known path
   static const home = '/home';
+  static const docHome = '/doc-home';
   static const onboarding = '/onboarding';
   static const login = '/login';
   static const signup = '/signup';
@@ -43,6 +45,11 @@ class AppPages {
     GetPage(
       name: home,
       page: () => HomeScreen(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: docHome,
+      page: () =>  DocHome(),
       transition: Transition.fadeIn,
     ),
     GetPage(name: onboarding, page: () => const OnboardingScreen()),

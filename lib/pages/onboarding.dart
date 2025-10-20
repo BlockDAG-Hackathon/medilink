@@ -103,7 +103,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: List.generate(
-                              Utils.onboarding.length,
+                              Utils.onboarding.length ,
                               (index) => _buildPageIndicator(index),
                             ),
                           ),
@@ -137,6 +137,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         ),
 
                         // Buttons Section - Fixed at bottom
+                         
                         isLastPage
                             ? Row(
                                 children: [
@@ -156,23 +157,28 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                     child: Btn(
                                       fontSize: 16,
                                       onClick: () =>
-                                          Get.offAllNamed(AppPages.login),
+                                          Get.toNamed(AppPages.login),
                                       label: "Log in",
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
                                 ],
                               )
-                            : Btn(
-                                onClick: () {
-                                  _pageController.nextPage(
-                                    duration: const Duration(milliseconds: 400),
-                                    curve: Curves.easeOut,
-                                  );
-                                },
-                                label: "Next",
-                                fontWeight: FontWeight.w500,
-                              ),
+                            :
+                        Btn(
+                          onClick: () {
+                            if (isLastPage) {
+                              Get.toNamed(AppPages.whoAreYou);
+                            } else {
+                              _pageController.nextPage(
+                                duration: const Duration(milliseconds: 400),
+                                curve: Curves.easeOut,
+                              );
+                            }
+                          },
+                          label: _currentPage == 0 ? "Get Started" : "Continue",
+                          fontWeight: FontWeight.w500,
+                        ),
 
                         SizedBox(height: 16),
                       ],

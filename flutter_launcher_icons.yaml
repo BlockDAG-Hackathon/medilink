@@ -1,6 +1,6 @@
 
 flutter_launcher_icons:
-  image_path: "assets/vectors/medilink_logo.png"
+  image_path: "assets/vectors/medilink.png"
 
   android: "launcher_icon"
   # image_path_android: "assets/icon/icon.png"

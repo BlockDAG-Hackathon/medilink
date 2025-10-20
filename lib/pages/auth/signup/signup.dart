@@ -5,6 +5,7 @@ import 'package:hackathon_app/pages/auth/signup/steps/consent.dart';
 import 'package:hackathon_app/pages/auth/signup/steps/emergency_access.dart';
 import 'package:hackathon_app/ui/deep_blue_gradient_background.dart';
 import '../../../controllers/signup_controller.dart';
+import '../../../controllers/user_controller.dart';
 import '../../../pages/auth/signup/steps/medical_info.dart';
 import '../../../pages/auth/signup/steps/welcome.dart';
 import '../../../ui/btn.dart';
@@ -224,7 +225,20 @@ class SignupScreen extends StatelessWidget {
     } else {
       // Complete signup process (only if terms are accepted on consent step)
       if (controller.activeIndex.value == 4 && controller.termsAccepted.value) {
-        Get.offAllNamed("/home");
+        // Check user type and navigate accordingly
+        try {
+          final userController = UserController.instance;
+          if (userController.isDoctor()) {
+            // Navigate to doctor home
+            Get.offAllNamed("/doc-home");
+          } else {
+            // Navigate to patient home (default)
+            Get.offAllNamed("/home");
+          }
+        } catch (e) {
+          // Fallback to patient home if UserController is not found
+          Get.offAllNamed("/home");
+        }
       }
     }
   }
