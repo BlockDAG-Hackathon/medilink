@@ -20,10 +20,10 @@ class ProfileDrawer extends StatelessWidget {
             onTap: () => Get.back(),
             child: Container(
               margin: EdgeInsets.only(top: Get.height * 0.1, right: 20),
-            
+
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.2),
+                color: Colors.white.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: const HugeIcon(
@@ -104,7 +104,7 @@ class ProfileDrawer extends StatelessWidget {
                                 vertical: 4,
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.green.withOpacity(0.2),
+                                color: Colors.green.withValues(alpha: 0.2),
                                 borderRadius: BorderRadius.circular(12),
                                 border: Border.all(
                                   color: Colors.green,
@@ -227,10 +227,10 @@ class ProfileDrawer extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: const Color(0xFF010A38).withOpacity(0.05),
+                      color: const Color(0xFF010A38).withValues(alpha: 0.05),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: const Color(0xFF010A38).withOpacity(0.1),
+                        color: const Color(0xFF010A38).withValues(alpha: 0.1),
                       ),
                     ),
                     child: Column(
@@ -291,9 +291,11 @@ class ProfileDrawer extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: Colors.red.withOpacity(0.05),
+                        color: Colors.red.withValues(alpha: 0.05),
                         borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: Colors.red.withOpacity(0.2)),
+                        border: Border.all(
+                          color: Colors.red.withValues(alpha: 0.2),
+                        ),
                       ),
                       child: Row(
                         children: [
@@ -346,7 +348,7 @@ class ProfileDrawer extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: const Color(0xFF010A38).withOpacity(0.1),
+                color: const Color(0xFF010A38).withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: HugeIcon(

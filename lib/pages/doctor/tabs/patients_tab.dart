@@ -10,7 +10,8 @@ class PatientsTab extends StatefulWidget {
   State<PatientsTab> createState() => _PatientsTabState();
 }
 
-class _PatientsTabState extends State<PatientsTab> with SingleTickerProviderStateMixin {
+class _PatientsTabState extends State<PatientsTab>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -30,9 +31,7 @@ class _PatientsTabState extends State<PatientsTab> with SingleTickerProviderStat
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Container(
-        decoration: const BoxDecoration(
-          color: Colors.transparent
-        ),
+        decoration: const BoxDecoration(color: Colors.transparent),
         child: SafeArea(
           child: Column(
             children: [
@@ -46,7 +45,7 @@ class _PatientsTabState extends State<PatientsTab> with SingleTickerProviderStat
                       child: Container(
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.2),
+                          color: Colors.white.withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: const Icon(
@@ -73,19 +72,19 @@ class _PatientsTabState extends State<PatientsTab> with SingleTickerProviderStat
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 20),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.1),
+                  color: Colors.white.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(25),
                 ),
                 child: TabBar(
                   controller: _tabController,
                   indicator: BoxDecoration(
-                    color: Colors.white.withOpacity(0.2),
+                    color: Colors.white.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(25),
                   ),
                   indicatorSize: TabBarIndicatorSize.tab,
                   dividerColor: Colors.transparent,
                   labelColor: Colors.white,
-                  unselectedLabelColor: Colors.white.withOpacity(0.6),
+                  unselectedLabelColor: Colors.white.withValues(alpha: 0.6),
                   labelStyle: GoogleFonts.poppins(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -107,10 +106,7 @@ class _PatientsTabState extends State<PatientsTab> with SingleTickerProviderStat
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
-                  children: [
-                    _buildUpcomingTab(),
-                    _buildPastTab(),
-                  ],
+                  children: [_buildUpcomingTab(), _buildPastTab()],
                 ),
               ),
             ],
@@ -144,7 +140,7 @@ class _PatientsTabState extends State<PatientsTab> with SingleTickerProviderStat
             name: "Olivia Bennerett",
             time: "10:00 AM, Virtual",
             buttonText: "Details",
-            buttonColor: Colors.white.withOpacity(0.3),
+            buttonColor: Colors.white.withValues(alpha: 0.3),
             textColor: Colors.white,
             onButtonTap: () {
               Get.snackbar(
@@ -160,7 +156,7 @@ class _PatientsTabState extends State<PatientsTab> with SingleTickerProviderStat
             name: "Ava Morgan",
             time: "10:00 AM, Virtual",
             buttonText: "Details",
-            buttonColor: Colors.white.withOpacity(0.3),
+            buttonColor: Colors.white.withValues(alpha: 0.3),
             textColor: Colors.white,
             onButtonTap: () {
               Get.snackbar(
@@ -185,7 +181,7 @@ class _PatientsTabState extends State<PatientsTab> with SingleTickerProviderStat
             name: "Noah Carter",
             time: "Yesterday, 2:00 PM",
             buttonText: "Details",
-            buttonColor: Colors.white.withOpacity(0.3),
+            buttonColor: Colors.white.withValues(alpha: 0.3),
             textColor: Colors.white,
             onButtonTap: () {
               Get.snackbar(
@@ -201,7 +197,7 @@ class _PatientsTabState extends State<PatientsTab> with SingleTickerProviderStat
             name: "Emma Wilson",
             time: "2 days ago, 11:00 AM",
             buttonText: "Details",
-            buttonColor: Colors.white.withOpacity(0.3),
+            buttonColor: Colors.white.withValues(alpha: 0.3),
             textColor: Colors.white,
             onButtonTap: () {
               Get.snackbar(
@@ -217,7 +213,7 @@ class _PatientsTabState extends State<PatientsTab> with SingleTickerProviderStat
             name: "James Rodriguez",
             time: "Last week, 3:30 PM",
             buttonText: "Details",
-            buttonColor: Colors.white.withOpacity(0.3),
+            buttonColor: Colors.white.withValues(alpha: 0.3),
             textColor: Colors.white,
             onButtonTap: () {
               Get.snackbar(
@@ -244,10 +240,10 @@ class _PatientsTabState extends State<PatientsTab> with SingleTickerProviderStat
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1),
+        color: Colors.white.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(25),
         border: Border.all(
-          color: Colors.white.withOpacity(0.2),
+          color: Colors.white.withValues(alpha: 0.2),
           width: 1,
         ),
       ),
@@ -260,7 +256,7 @@ class _PatientsTabState extends State<PatientsTab> with SingleTickerProviderStat
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(
-                color: Colors.white.withOpacity(0.3),
+                color: Colors.white.withValues(alpha: 0.3),
                 width: 2,
               ),
             ),
@@ -269,7 +265,7 @@ class _PatientsTabState extends State<PatientsTab> with SingleTickerProviderStat
             ),
           ),
           const SizedBox(width: 16),
-          
+
           // Patient Info
           Expanded(
             child: Column(
@@ -287,7 +283,7 @@ class _PatientsTabState extends State<PatientsTab> with SingleTickerProviderStat
                 Text(
                   time,
                   style: GoogleFonts.poppins(
-                    color: Colors.white.withOpacity(0.7),
+                    color: Colors.white.withValues(alpha: 0.7),
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                   ),
@@ -295,15 +291,12 @@ class _PatientsTabState extends State<PatientsTab> with SingleTickerProviderStat
               ],
             ),
           ),
-          
+
           // Action Button
           GestureDetector(
             onTap: onButtonTap,
             child: Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 24,
-                vertical: 12,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               decoration: BoxDecoration(
                 color: buttonColor,
                 borderRadius: BorderRadius.circular(25),

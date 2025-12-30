@@ -103,7 +103,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: List.generate(
-                              Utils.onboarding.length ,
+                              Utils.onboarding.length,
                               (index) => _buildPageIndicator(index),
                             ),
                           ),
@@ -129,7 +129,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             Utils.onboarding[_currentPage]["desc"],
                             style: GoogleFonts.poppins(
                               fontSize: 15,
-                              color: Colors.white.withOpacity(0.9),
+                              color: Colors.white.withValues(alpha: 0.9),
                               fontWeight: FontWeight.w400,
                               height: 1.4,
                             ),
@@ -137,7 +137,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         ),
 
                         // Buttons Section - Fixed at bottom
-                         
                         isLastPage
                             ? Row(
                                 children: [
@@ -164,21 +163,24 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                   ),
                                 ],
                               )
-                            :
-                        Btn(
-                          onClick: () {
-                            if (isLastPage) {
-                              Get.toNamed(AppPages.whoAreYou);
-                            } else {
-                              _pageController.nextPage(
-                                duration: const Duration(milliseconds: 400),
-                                curve: Curves.easeOut,
-                              );
-                            }
-                          },
-                          label: _currentPage == 0 ? "Get Started" : "Continue",
-                          fontWeight: FontWeight.w500,
-                        ),
+                            : Btn(
+                                onClick: () {
+                                  if (isLastPage) {
+                                    Get.toNamed(AppPages.whoAreYou);
+                                  } else {
+                                    _pageController.nextPage(
+                                      duration: const Duration(
+                                        milliseconds: 400,
+                                      ),
+                                      curve: Curves.easeOut,
+                                    );
+                                  }
+                                },
+                                label: _currentPage == 0
+                                    ? "Get Started"
+                                    : "Continue",
+                                fontWeight: FontWeight.w500,
+                              ),
 
                         SizedBox(height: 16),
                       ],

@@ -40,7 +40,7 @@ class SecretPhraseIntroScreen extends GetView {
                       child: Column(
                         children: [
                           const SizedBox(height: 40),
-                          
+
                           // Image section
                           Container(
                             constraints: BoxConstraints(
@@ -52,9 +52,9 @@ class SecretPhraseIntroScreen extends GetView {
                               fit: BoxFit.contain,
                             ),
                           ),
-                          
+
                           const SizedBox(height: 30),
-                          
+
                           // Title
                           Text(
                             "This secret phrase is the master key to your wallet",
@@ -66,7 +66,7 @@ class SecretPhraseIntroScreen extends GetView {
                             ),
                             textAlign: TextAlign.center,
                           ),
-                          
+
                           const SizedBox(height: 16),
 
                           // Subtitle
@@ -80,7 +80,7 @@ class SecretPhraseIntroScreen extends GetView {
                             ),
                             textAlign: TextAlign.center,
                           ),
-                          
+
                           const SizedBox(height: 30),
 
                           // Phrase checks
@@ -94,7 +94,9 @@ class SecretPhraseIntroScreen extends GetView {
                                       color: const Color(0x1AFFFFFF),
                                       borderRadius: BorderRadius.circular(12),
                                       border: Border.all(
-                                        color: Colors.white.withOpacity(0.1),
+                                        color: Colors.white.withValues(
+                                          alpha: 0.1,
+                                        ),
                                         width: 1,
                                       ),
                                     ),
@@ -103,7 +105,9 @@ class SecretPhraseIntroScreen extends GetView {
                                         Icon(
                                           Icons.check_circle_outline,
                                           size: 20,
-                                          color: Colors.white.withOpacity(0.7),
+                                          color: Colors.white.withValues(
+                                            alpha: 0.7,
+                                          ),
                                         ),
                                         const SizedBox(width: 12),
                                         Expanded(
@@ -123,13 +127,13 @@ class SecretPhraseIntroScreen extends GetView {
                                 )
                                 .toList(),
                           ),
-                          
+
                           const SizedBox(height: 20),
                         ],
                       ),
                     ),
                   ),
-                  
+
                   // Fixed button at bottom
                   Padding(
                     padding: const EdgeInsets.only(bottom: 20, top: 10),

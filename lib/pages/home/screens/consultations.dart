@@ -3,9 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hackathon_app/models/consultation.dart';
 import 'package:hackathon_app/pages/home/screens/consultation/consultation_form.dart';
-import '../../../ui/btn.dart';
 
-// Dummy Data matching the screenshot
 final List<Consultation> consultations = [
   Consultation(
     name: 'Dr. Ben Carter',
@@ -118,7 +116,7 @@ class ConsultationCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 3, horizontal: 5),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.5),
+        color: color.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(5),
       ),
       child: Row(

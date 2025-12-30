@@ -70,7 +70,7 @@ class DoctorConsultationsTab extends StatelessWidget {
           //     Color(0xFF3B82F6), // Lighter blue
           //   ],
           // ),
-          color: Colors.transparent
+          color: Colors.transparent,
         ),
         child: SafeArea(
           child: Column(
@@ -85,7 +85,7 @@ class DoctorConsultationsTab extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.2),
+                          color: Colors.white.withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: const Icon(
@@ -118,7 +118,7 @@ class DoctorConsultationsTab extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.2),
+                          color: Colors.white.withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: const HugeIcon(
@@ -193,9 +193,9 @@ class DoctorConsultationCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.2),
+        color: color.withValues(alpha: 0.2),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: color.withOpacity(0.5)),
+        border: Border.all(color: color.withValues(alpha: 0.5)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -203,10 +203,7 @@ class DoctorConsultationCard extends StatelessWidget {
           Container(
             width: 6,
             height: 6,
-            decoration: BoxDecoration(
-              color: color,
-              shape: BoxShape.circle,
-            ),
+            decoration: BoxDecoration(color: color, shape: BoxShape.circle),
           ),
           const SizedBox(width: 6),
           Text(
@@ -228,11 +225,9 @@ class DoctorConsultationCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1),
+        color: Colors.white.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: Colors.white.withOpacity(0.2),
-        ),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -244,7 +239,7 @@ class DoctorConsultationCard extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(
-                color: Colors.white.withOpacity(0.3),
+                color: Colors.white.withValues(alpha: 0.3),
                 width: 2,
               ),
             ),
@@ -277,7 +272,7 @@ class DoctorConsultationCard extends StatelessWidget {
                     Text(
                       consultation.timeStatus,
                       style: GoogleFonts.poppins(
-                        color: Colors.white.withOpacity(0.7),
+                        color: Colors.white.withValues(alpha: 0.7),
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
                       ),
@@ -290,7 +285,7 @@ class DoctorConsultationCard extends StatelessWidget {
                 Text(
                   consultation.hospital,
                   style: GoogleFonts.poppins(
-                    color: Colors.white.withOpacity(0.6),
+                    color: Colors.white.withValues(alpha: 0.6),
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
                   ),
@@ -301,7 +296,7 @@ class DoctorConsultationCard extends StatelessWidget {
                 Text(
                   consultation.description,
                   style: GoogleFonts.poppins(
-                    color: Colors.white.withOpacity(0.8),
+                    color: Colors.white.withValues(alpha: 0.8),
                     fontSize: 13,
                     fontWeight: FontWeight.w400,
                   ),
@@ -318,7 +313,8 @@ class DoctorConsultationCard extends StatelessWidget {
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        if (consultation.status == 'Scheduled' || consultation.status == 'In Progress')
+                        if (consultation.status == 'Scheduled' ||
+                            consultation.status == 'In Progress')
                           GestureDetector(
                             onTap: () {
                               Get.snackbar(
@@ -334,10 +330,10 @@ class DoctorConsultationCard extends StatelessWidget {
                                 vertical: 6,
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.green.withOpacity(0.2),
+                                color: Colors.green.withValues(alpha: 0.2),
                                 borderRadius: BorderRadius.circular(12),
                                 border: Border.all(
-                                  color: Colors.green.withOpacity(0.5),
+                                  color: Colors.green.withValues(alpha: 0.5),
                                 ),
                               ),
                               child: Text(
@@ -366,10 +362,10 @@ class DoctorConsultationCard extends StatelessWidget {
                               vertical: 6,
                             ),
                             decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.2),
+                              color: Colors.white.withValues(alpha: 0.2),
                               borderRadius: BorderRadius.circular(12),
                               border: Border.all(
-                                color: Colors.white.withOpacity(0.3),
+                                color: Colors.white.withValues(alpha: 0.3),
                               ),
                             ),
                             child: Text(

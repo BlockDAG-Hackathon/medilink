@@ -22,7 +22,7 @@ class HealthWallet extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.withOpacity(0.1),
+                  color: Colors.grey.withValues(alpha: 0.1),
                   spreadRadius: 1,
                   blurRadius: 4,
                   offset: const Offset(0, 2),
@@ -56,7 +56,7 @@ class HealthWallet extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.1),
+                    color: Colors.grey.withValues(alpha: 0.1),
                     spreadRadius: 1,
                     blurRadius: 4,
                     offset: const Offset(0, 2),
@@ -90,7 +90,7 @@ class HealthWallet extends StatelessWidget {
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFF010A38).withOpacity(0.3),
+                    color: const Color(0xFF010A38).withValues(alpha: 0.3),
                     spreadRadius: 2,
                     blurRadius: 12,
                     offset: const Offset(0, 6),
@@ -109,7 +109,7 @@ class HealthWallet extends StatelessWidget {
                           Text(
                             "Total Balance",
                             style: GoogleFonts.poppins(
-                              color: Colors.white.withOpacity(0.8),
+                              color: Colors.white.withValues(alpha: 0.8),
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
                             ),
@@ -126,7 +126,7 @@ class HealthWallet extends StatelessWidget {
                           Text(
                             "≈ \$67,234.50 USD",
                             style: GoogleFonts.poppins(
-                              color: Colors.white.withOpacity(0.7),
+                              color: Colors.white.withValues(alpha: 0.7),
                               fontSize: 16,
                               fontWeight: FontWeight.w400,
                             ),
@@ -136,7 +136,7 @@ class HealthWallet extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.2),
+                          color: Colors.white.withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: const HugeIcon(
@@ -152,10 +152,10 @@ class HealthWallet extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.1),
+                      color: Colors.white.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: Colors.white.withOpacity(0.2),
+                        color: Colors.white.withValues(alpha: 0.2),
                       ),
                     ),
                     child: Row(
@@ -359,7 +359,7 @@ class HealthWallet extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.1),
+                    color: Colors.grey.withValues(alpha: 0.1),
                     spreadRadius: 1,
                     blurRadius: 4,
                     offset: const Offset(0, 2),
@@ -374,7 +374,7 @@ class HealthWallet extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
-                          color: Colors.blue.withOpacity(0.1),
+                          color: Colors.blue.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: const HugeIcon(
@@ -438,6 +438,7 @@ class HealthWallet extends StatelessWidget {
       ),
     );
   }
+
   Widget _buildQuickAction({
     required List<List<dynamic>> icon,
     required String title,
@@ -454,7 +455,7 @@ class HealthWallet extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.1),
+              color: Colors.grey.withValues(alpha: 0.1),
               spreadRadius: 1,
               blurRadius: 4,
               offset: const Offset(0, 2),
@@ -466,7 +467,7 @@ class HealthWallet extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: color.withOpacity(0.1),
+                color: color.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: HugeIcon(
@@ -487,10 +488,7 @@ class HealthWallet extends StatelessWidget {
             ),
             Text(
               subtitle,
-              style: GoogleFonts.poppins(
-                fontSize: 10,
-                color: Colors.grey[600],
-              ),
+              style: GoogleFonts.poppins(fontSize: 10, color: Colors.grey[600]),
             ),
           ],
         ),
@@ -514,7 +512,7 @@ class HealthWallet extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.1),
+              color: Colors.grey.withValues(alpha: 0.1),
               spreadRadius: 1,
               blurRadius: 4,
               offset: const Offset(0, 2),
@@ -530,7 +528,7 @@ class HealthWallet extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: color.withOpacity(0.1),
+                    color: color.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: HugeIcon(
@@ -589,7 +587,7 @@ class HealthWallet extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
+            color: Colors.grey.withValues(alpha: 0.1),
             spreadRadius: 1,
             blurRadius: 4,
             offset: const Offset(0, 2),
@@ -601,9 +599,9 @@ class HealthWallet extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: isDebit 
-                ? Colors.red.withOpacity(0.1) 
-                : Colors.green.withOpacity(0.1),
+              color: isDebit
+                  ? Colors.red.withValues(alpha: 0.1)
+                  : Colors.green.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(10),
             ),
             child: HugeIcon(
@@ -808,10 +806,7 @@ class HealthWallet extends StatelessWidget {
                       child: const Center(
                         child: Text(
                           "QR CODE",
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.grey,
-                          ),
+                          style: TextStyle(fontSize: 12, color: Colors.grey),
                         ),
                       ),
                     ),

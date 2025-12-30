@@ -35,7 +35,9 @@ class ConfirmSeedPhrasesScreen extends GetView {
         ),
         centerTitle: true,
         actionsPadding: EdgeInsets.only(top: 20, right: 20),
-        actions: [Icon(Icons.error, color: Colors.white.withOpacity(0.2))],
+        actions: [
+          Icon(Icons.error, color: Colors.white.withValues(alpha: 0.2)),
+        ],
       ),
       body: Stack(
         children: [
@@ -49,7 +51,7 @@ class ConfirmSeedPhrasesScreen extends GetView {
               crossAxisAlignment: CrossAxisAlignment.start,
               spacing: Get.height * 0.03,
               children: [
-                SizedBox(height: 10,),
+                SizedBox(height: 10),
                 Text(
                   "Please tap on the correct answer of the below seed phrases.",
                   softWrap: true,
@@ -96,10 +98,10 @@ class ConfirmSeedPhrasesScreen extends GetView {
                                   horizontal: 18,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(0.1),
+                                  color: Colors.white.withValues(alpha: 0.1),
                                   borderRadius: BorderRadius.circular(10),
                                   border: Border.all(
-                                    color: Colors.white.withOpacity(0.2),
+                                    color: Colors.white.withValues(alpha: 0.2),
                                     width: 1,
                                   ),
                                 ),

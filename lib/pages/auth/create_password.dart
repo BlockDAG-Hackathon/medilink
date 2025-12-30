@@ -15,8 +15,8 @@ class CreatePasswordScreen extends StatelessWidget {
     return Obx(() {
       return Container(
         decoration: BoxDecoration(
-          color: Colors.black.withOpacity(
-            0.4,
+          color: Colors.black.withValues(
+            alpha: 0.4,
           ), // Black background with 40% opacity
           borderRadius: BorderRadius.circular(12),
         ),
@@ -31,8 +31,8 @@ class CreatePasswordScreen extends StatelessWidget {
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: GoogleFonts.poppins(
-              color: Colors.white.withOpacity(
-                0.6,
+              color: Colors.white.withValues(
+                alpha: 0.6,
               ), // Semi-transparent white hint
               fontSize: 16,
               fontWeight: FontWeight.w300,
@@ -47,7 +47,7 @@ class CreatePasswordScreen extends StatelessWidget {
                         obscureText.value
                             ? Icons.visibility_off_outlined
                             : Icons.visibility_outlined,
-                        color: Colors.white.withOpacity(0.7),
+                        color: Colors.white.withValues(alpha: 0.7),
                         size: 24,
                       ),
                     ),

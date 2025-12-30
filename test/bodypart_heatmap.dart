@@ -3,131 +3,131 @@ import 'package:flutter/material.dart';
 
 // Extension to add toHex method to Color class
 extension ColorExtension on Color {
- String toHex({bool leadingHashSign = true}) {
-  return '${leadingHashSign ? '#' : ''}'
-    '${alpha.toRadixString(16).padLeft(2, '0')}'
-    '${red.toRadixString(16).padLeft(2, '0')}'
-    '${green.toRadixString(16).padLeft(2, '0')}'
-    '${blue.toRadixString(16).padLeft(2, '0')}';
- }
+  String toHex({bool leadingHashSign = true}) {
+    return '${leadingHashSign ? '#' : ''}'
+        '${alpha.toRadixString(16).padLeft(2, '0')}'
+        '${red.toRadixString(16).padLeft(2, '0')}'
+        '${green.toRadixString(16).padLeft(2, '0')}'
+        '${blue.toRadixString(16).padLeft(2, '0')}';
+  }
 }
 
 Path _parseSvgPath(String svgPathString) {
- // This function is correctly using the imported package to convert a raw string to a Flutter Path
- Path path = parseSvgPath(svgPathString);
- return path;
+  // This function is correctly using the imported package to convert a raw string to a Flutter Path
+  Path path = parseSvgPath(svgPathString);
+  return path;
 }
 
 class BodyHeatmap extends StatefulWidget {
- final Map<String, int> selectedParts;
- final Color unselectedColor;
- final Color baseColor;
- final double width;
- final bool showLegend;
- final TextStyle legendTextStyle;
- final MainAxisAlignment legendAlignment;
- final int intensityLevels;
- final ValueChanged<String>? onPartTap;
+  final Map<String, int> selectedParts;
+  final Color unselectedColor;
+  final Color baseColor;
+  final double width;
+  final bool showLegend;
+  final TextStyle legendTextStyle;
+  final MainAxisAlignment legendAlignment;
+  final int intensityLevels;
+  final ValueChanged<String>? onPartTap;
 
- const BodyHeatmap({
-  super.key,
-  required this.selectedParts,
-  required this.baseColor,
-  this.unselectedColor = const Color(0xFFCCCCCC),
-  this.width = 300,
-  this.showLegend = true,
-  this.legendTextStyle = const TextStyle(fontSize: 14, color: Colors.black),
-  this.legendAlignment = MainAxisAlignment.center,
-  this.intensityLevels = 3,
-  this.onPartTap,
- });
+  const BodyHeatmap({
+    super.key,
+    required this.selectedParts,
+    required this.baseColor,
+    this.unselectedColor = const Color(0xFFCCCCCC),
+    this.width = 300,
+    this.showLegend = true,
+    this.legendTextStyle = const TextStyle(fontSize: 14, color: Colors.black),
+    this.legendAlignment = MainAxisAlignment.center,
+    this.intensityLevels = 3,
+    this.onPartTap,
+  });
 
- @override
- State<BodyHeatmap> createState() => _BodyHeatmapState();
+  @override
+  State<BodyHeatmap> createState() => _BodyHeatmapState();
 }
 
 class _BodyHeatmapState extends State<BodyHeatmap> {
- // --- Coloring Logic ---
- Color _getFillColor(String part) {
-  final value = widget.selectedParts[part];
-  if (value == null || value == 0) return widget.unselectedColor;
-  return widget.baseColor;
- }
-
- String fillSvg(String part) {
-  final value = widget.selectedParts[part];
-  if (value == null || value == 0) {
-   return widget.unselectedColor.toHex(leadingHashSign: true);
+  // --- Coloring Logic ---
+  Color _getFillColor(String part) {
+    final value = widget.selectedParts[part];
+    if (value == null || value == 0) return widget.unselectedColor;
+    return widget.baseColor;
   }
 
-  return widget.baseColor.toHex(leadingHashSign: true);
- }
-  
+  String fillSvg(String part) {
+    final value = widget.selectedParts[part];
+    if (value == null || value == 0) {
+      return widget.unselectedColor.toHex(leadingHashSign: true);
+    }
+
+    return widget.baseColor.toHex(leadingHashSign: true);
+  }
+
   // 🎯 THE CRITICAL FIX IS HERE
- Map<String, List<String>> parseSvgPaths(String svgString) {
-  final Map<String, List<String>> svgPaths = {};
+  Map<String, List<String>> parseSvgPaths(String svgString) {
+    final Map<String, List<String>> svgPaths = {};
 
-  // Regex to reliably capture both the path data (Group 1) and the part ID (Group 2)
-  // It looks for the unique 'fill-opacity' attribute which contains the part ID.
-  final RegExp heatmapPathExp = RegExp(
-    r'<path[^>]*d="([^"]+)"[^>]*fill-opacity="\$\{fillOpacity\("([^"]+)"\)\}"',
-    multiLine: true,
-  );
+    // Regex to reliably capture both the path data (Group 1) and the part ID (Group 2)
+    // It looks for the unique 'fill-opacity' attribute which contains the part ID.
+    final RegExp heatmapPathExp = RegExp(
+      r'<path[^>]*d="([^"]+)"[^>]*fill-opacity="\$\{fillOpacity\("([^"]+)"\)\}"',
+      multiLine: true,
+    );
 
-  for (final match in heatmapPathExp.allMatches(svgString)) {
-   final pathData = match.group(1);
-   final region = match.group(2);
+    for (final match in heatmapPathExp.allMatches(svgString)) {
+      final pathData = match.group(1);
+      final region = match.group(2);
 
-   if (pathData != null && region != null) {
-    svgPaths.putIfAbsent(region, () => []).add(pathData);
-   }
+      if (pathData != null && region != null) {
+        svgPaths.putIfAbsent(region, () => []).add(pathData);
+      }
+    }
+
+    // SECOND STEP (Optional but recommended): Capture all uncolorable default paths
+    // so that the head, hands, and feet are also drawn.
+    final RegExp defaultPathExp = RegExp(
+      r'<path[^>]*d="([^"]+)"[^>]*fill="\$\{defaultColor\(\)\}"[^>]*>',
+      multiLine: true,
+    );
+
+    const String defaultId = 'default_outline';
+    for (final match in defaultPathExp.allMatches(svgString)) {
+      final pathData = match.group(1);
+      if (pathData != null) {
+        svgPaths.putIfAbsent(defaultId, () => []).add(pathData);
+      }
+    }
+
+    return svgPaths;
   }
 
-  // SECOND STEP (Optional but recommended): Capture all uncolorable default paths
-  // so that the head, hands, and feet are also drawn.
-  final RegExp defaultPathExp = RegExp(
-    r'<path[^>]*d="([^"]+)"[^>]*fill="\$\{defaultColor\(\)\}"[^>]*>',
-    multiLine: true,
-  );
+  double fillOpacity(String part) {
+    final value = widget.selectedParts[part];
+    if (value == null || value == 0) return 1.0;
 
-  const String defaultId = 'default_outline';
-  for (final match in defaultPathExp.allMatches(svgString)) {
-   final pathData = match.group(1);
-   if (pathData != null) {
-    svgPaths.putIfAbsent(defaultId, () => []).add(pathData);
-   }
+    final allValues = widget.selectedParts.values.where((v) => v > 0);
+    if (allValues.isEmpty) return 1.0;
+
+    final min = allValues.reduce((a, b) => a < b ? a : b);
+    final max = allValues.reduce((a, b) => a > b ? a : b);
+    final normalized = max == min ? 1.0 : (value - min) / (max - min);
+
+    final steps = List.generate(
+      widget.intensityLevels,
+      (i) => (i + 1) / widget.intensityLevels,
+    );
+
+    final index = (normalized * (steps.length - 1)).round();
+    return steps[index];
   }
-  
-  return svgPaths;
- }
 
- double fillOpacity(String part) {
-  final value = widget.selectedParts[part];
-  if (value == null || value == 0) return 1.0;
+  String defaultColor() {
+    return widget.unselectedColor.toHex(leadingHashSign: true);
+  }
 
-  final allValues = widget.selectedParts.values.where((v) => v > 0);
-  if (allValues.isEmpty) return 1.0;
-
-  final min = allValues.reduce((a, b) => a < b ? a : b);
-  final max = allValues.reduce((a, b) => a > b ? a : b);
-  final normalized = max == min ? 1.0 : (value - min) / (max - min);
-
-  final steps = List.generate(
-   widget.intensityLevels,
-   (i) => (i + 1) / widget.intensityLevels,
-  );
-
-  final index = (normalized * (steps.length - 1)).round();
-  return steps[index];
- }
-
- String defaultColor() {
-  return widget.unselectedColor.toHex(leadingHashSign: true);
- }
-
- late final String svgString = 
-// Your original massive SVG string is retained here:
-''' 
+  late final String svgString =
+      // Your original massive SVG string is retained here:
+      ''' 
 //🫡
 <svg width="319" height="295" viewBox="0 0 319 295" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M69 0L63 4V14H60.5V19.5C61.3333 20 63 21.2 63 22V30L69 34H79L84.5 30V22L87.5 19.5V14H84.5V4L79 0H69Z" fill="${defaultColor()}"/>
@@ -240,194 +240,197 @@ fill="${fillSvg("arm")}" fill-opacity="${fillOpacity("arm")}"/>
 </svg>
   ''';
 
- double _getFillOpacity(String part) {
-  final value = widget.selectedParts[part];
-  if (value == null || value == 0) return 1.0;
+  double _getFillOpacity(String part) {
+    final value = widget.selectedParts[part];
+    if (value == null || value == 0) return 1.0;
 
-  final allValues = widget.selectedParts.values.where((v) => v > 0);
-  if (allValues.isEmpty) return 1.0;
+    final allValues = widget.selectedParts.values.where((v) => v > 0);
+    if (allValues.isEmpty) return 1.0;
 
-  final min = allValues.reduce((a, b) => a < b ? a : b);
-  final max = allValues.reduce((a, b) => a > b ? a : b);
-  final normalized = max == min ? 1.0 : (value - min) / (max - min);
+    final min = allValues.reduce((a, b) => a < b ? a : b);
+    final max = allValues.reduce((a, b) => a > b ? a : b);
+    final normalized = max == min ? 1.0 : (value - min) / (max - min);
 
-  final steps = List.generate(
-   widget.intensityLevels,
-   (i) => (i + 1) / widget.intensityLevels,
-  );
+    final steps = List.generate(
+      widget.intensityLevels,
+      (i) => (i + 1) / widget.intensityLevels,
+    );
 
-  final index = (normalized * (steps.length - 1)).round().clamp(
-   0,
-   steps.length - 1,
-  );
-  return steps[index];
- }
+    final index = (normalized * (steps.length - 1)).round().clamp(
+      0,
+      steps.length - 1,
+    );
+    return steps[index];
+  }
 
- // --- Legend Widget ---
- List<Widget> buildLegend() {
-  const totalWidth = 80.0;
-  const height = 15.0;
+  // --- Legend Widget ---
+  List<Widget> buildLegend() {
+    const totalWidth = 80.0;
+    const height = 15.0;
 
-  final boxWidth = totalWidth / widget.intensityLevels;
+    final boxWidth = totalWidth / widget.intensityLevels;
 
-  return List.generate(widget.intensityLevels, (i) {
-   final opacity = (i + 1) / widget.intensityLevels;
-   return Container(
-    height: height,
-    width: boxWidth,
-    color: widget.baseColor.withOpacity(opacity),
-   );
-  });
- }
+    return List.generate(widget.intensityLevels, (i) {
+      final opacity = (i + 1) / widget.intensityLevels;
+      return Container(
+        height: height,
+        width: boxWidth,
+        color: widget.baseColor.withValues(alpha: opacity),
+      );
+    });
+  }
 
- @override
- Widget build(BuildContext context) {
-  // Define the intrinsic size of the SVG viewbox (319x295)
-  const double svgWidth = 319.0;
-  const double svgHeight = 295.0;
-  final double actualHeight = (svgHeight / svgWidth) * widget.width;
+  @override
+  Widget build(BuildContext context) {
+    // Define the intrinsic size of the SVG viewbox (319x295)
+    const double svgWidth = 319.0;
+    const double svgHeight = 295.0;
+    final double actualHeight = (svgHeight / svgWidth) * widget.width;
 
-  return Column(
-   mainAxisAlignment: MainAxisAlignment.center,
-   children: [
-    GestureDetector(
-     onTapUp: (details) {
-      if (widget.onPartTap == null) return;
-      final Offset tapPoint = details.localPosition;
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        GestureDetector(
+          onTapUp: (details) {
+            if (widget.onPartTap == null) return;
+            final Offset tapPoint = details.localPosition;
 
-      // Check which part contains the tap point
-      String? hitPartId;
-      
-      // Iterate in reverse to respect drawing order (frontmost paths first)
+            // Check which part contains the tap point
+            String? hitPartId;
+
+            // Iterate in reverse to respect drawing order (frontmost paths first)
             // Skip the 'default_outline' part as it's not clickable
             final allParts = parseSvgPaths(svgString).entries.toList();
 
-      for (var entry in allParts.where((e) => e.key != 'default_outline').toList().reversed) {
-       final partId = entry.key;
-       final pathStrings = entry.value;
+            for (var entry
+                in allParts
+                    .where((e) => e.key != 'default_outline')
+                    .toList()
+                    .reversed) {
+              final partId = entry.key;
+              final pathStrings = entry.value;
 
-       for (String pathString in pathStrings) {
-        final path = _parseSvgPath(pathString); // Parse the SVG path
+              for (String pathString in pathStrings) {
+                final path = _parseSvgPath(pathString); // Parse the SVG path
 
-        // Scale the path to the widget's actual size
-        final Matrix4 matrix = Matrix4.identity()
-         ..scale(widget.width / svgWidth, actualHeight / svgHeight);
+                // Scale the path to the widget's actual size
+                final Matrix4 matrix = Matrix4.identity()
+                  ..scale(widget.width / svgWidth, actualHeight / svgHeight);
 
-        final Path scaledPath = path.transform(matrix.storage);
+                final Path scaledPath = path.transform(matrix.storage);
 
-        if (scaledPath.contains(tapPoint)) {
-         hitPartId = partId;
-         break; // Found the specific path
-        }
-       }
-       if (hitPartId != null) break; // Found the body part
-      }
+                if (scaledPath.contains(tapPoint)) {
+                  hitPartId = partId;
+                  break; // Found the specific path
+                }
+              }
+              if (hitPartId != null) break; // Found the body part
+            }
 
-      if (hitPartId != null) {
-       widget.onPartTap!(hitPartId!);
-      }
-     },
-     child: CustomPaint(
-      size: Size(widget.width, actualHeight),
-      painter: _BodyHeatmapPainter(
-       svgBodyPartsData: parseSvgPaths(svgString),
-       selectedParts: widget.selectedParts,
-       unselectedColor: widget.unselectedColor,
-       baseColor: widget.baseColor,
-       intensityLevels: widget.intensityLevels,
-       getFillColor: _getFillColor,
-       getFillOpacity: _getFillOpacity,
-      ),
-     ),
-    ),
+            if (hitPartId != null) {
+              widget.onPartTap!(hitPartId!);
+            }
+          },
+          child: CustomPaint(
+            size: Size(widget.width, actualHeight),
+            painter: _BodyHeatmapPainter(
+              svgBodyPartsData: parseSvgPaths(svgString),
+              selectedParts: widget.selectedParts,
+              unselectedColor: widget.unselectedColor,
+              baseColor: widget.baseColor,
+              intensityLevels: widget.intensityLevels,
+              getFillColor: _getFillColor,
+              getFillOpacity: _getFillOpacity,
+            ),
+          ),
+        ),
 
-    // Legend
-    if (widget.showLegend)
-     Padding(
-      padding: const EdgeInsets.only(
-       top: 16.0,
-       bottom: 8.0,
-       left: 20.0,
-       right: 20.0,
-      ),
-      child: Row(
-       mainAxisAlignment: widget.legendAlignment,
-       children: [
-        Text('Low', style: widget.legendTextStyle),
-        const SizedBox(width: 5),
-        Row(children: buildLegend()),
-        const SizedBox(width: 5),
-        Text('High', style: widget.legendTextStyle),
-       ],
-      ),
-     ),
-   ],
-  );
- }
+        // Legend
+        if (widget.showLegend)
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 16.0,
+              bottom: 8.0,
+              left: 20.0,
+              right: 20.0,
+            ),
+            child: Row(
+              mainAxisAlignment: widget.legendAlignment,
+              children: [
+                Text('Low', style: widget.legendTextStyle),
+                const SizedBox(width: 5),
+                Row(children: buildLegend()),
+                const SizedBox(width: 5),
+                Text('High', style: widget.legendTextStyle),
+              ],
+            ),
+          ),
+      ],
+    );
+  }
 }
 
 // 3. The Custom Painter
 class _BodyHeatmapPainter extends CustomPainter {
- final Map<String, List<String>> svgBodyPartsData;
- final Map<String, int> selectedParts;
- final Color unselectedColor;
- final Color baseColor;
- final int intensityLevels;
- final Color Function(String part) getFillColor;
- final double Function(String part) getFillOpacity;
+  final Map<String, List<String>> svgBodyPartsData;
+  final Map<String, int> selectedParts;
+  final Color unselectedColor;
+  final Color baseColor;
+  final int intensityLevels;
+  final Color Function(String part) getFillColor;
+  final double Function(String part) getFillOpacity;
 
- _BodyHeatmapPainter({
-  required this.svgBodyPartsData,
-  required this.selectedParts,
-  required this.unselectedColor,
-  required this.baseColor,
-  required this.intensityLevels,
-  required this.getFillColor,
-  required this.getFillOpacity,
- });
-
- @override
- void paint(Canvas canvas, Size size) {
-  const double svgWidth = 319.0;
-  const double svgHeight = 295.0;
-    const String defaultId = 'default_outline'; // Use the same ID as in parseSvgPaths
-
-  // Scaling factor from original SVG viewbox to current widget size
-  final double scaleX = size.width / svgWidth;
-  final double scaleY = size.height / svgHeight;
-
-  // Apply global scaling transformation to the canvas
-  canvas.scale(scaleX, scaleY);
-
-  // Iterate through all body parts
-  svgBodyPartsData.forEach((partId, pathStrings) {
-   // Determine color and opacity
-        final bool isDefaultPart = partId == defaultId;
-
-   final Color baseFill = isDefaultPart 
-            ? unselectedColor 
-            : getFillColor(partId);
-   final double opacity = isDefaultPart 
-            ? 1.0 
-            : getFillOpacity(partId);
-
-   final paint = Paint()
-    ..color = baseFill.withOpacity(opacity)
-    ..style = PaintingStyle.fill;
-
-   // Draw all paths belonging to this body part
-   for (String pathString in pathStrings) {
-    final Path path = _parseSvgPath(pathString);
-    canvas.drawPath(path, paint);
-   }
+  _BodyHeatmapPainter({
+    required this.svgBodyPartsData,
+    required this.selectedParts,
+    required this.unselectedColor,
+    required this.baseColor,
+    required this.intensityLevels,
+    required this.getFillColor,
+    required this.getFillOpacity,
   });
- }
 
- @override
- bool shouldRepaint(covariant _BodyHeatmapPainter oldDelegate) {
-  // Repaint only if the data or coloring logic changes
-  return oldDelegate.selectedParts != selectedParts ||
-  oldDelegate.baseColor != baseColor ||
-    oldDelegate.unselectedColor != unselectedColor;
- }
+  @override
+  void paint(Canvas canvas, Size size) {
+    const double svgWidth = 319.0;
+    const double svgHeight = 295.0;
+    const String defaultId =
+        'default_outline'; // Use the same ID as in parseSvgPaths
+
+    // Scaling factor from original SVG viewbox to current widget size
+    final double scaleX = size.width / svgWidth;
+    final double scaleY = size.height / svgHeight;
+
+    // Apply global scaling transformation to the canvas
+    canvas.scale(scaleX, scaleY);
+
+    // Iterate through all body parts
+    svgBodyPartsData.forEach((partId, pathStrings) {
+      // Determine color and opacity
+      final bool isDefaultPart = partId == defaultId;
+
+      final Color baseFill = isDefaultPart
+          ? unselectedColor
+          : getFillColor(partId);
+      final double opacity = isDefaultPart ? 1.0 : getFillOpacity(partId);
+
+      final paint = Paint()
+        ..color = baseFill.withValues(alpha: opacity)
+        ..style = PaintingStyle.fill;
+
+      // Draw all paths belonging to this body part
+      for (String pathString in pathStrings) {
+        final Path path = _parseSvgPath(pathString);
+        canvas.drawPath(path, paint);
+      }
+    });
+  }
+
+  @override
+  bool shouldRepaint(covariant _BodyHeatmapPainter oldDelegate) {
+    // Repaint only if the data or coloring logic changes
+    return oldDelegate.selectedParts != selectedParts ||
+        oldDelegate.baseColor != baseColor ||
+        oldDelegate.unselectedColor != unselectedColor;
+  }
 }

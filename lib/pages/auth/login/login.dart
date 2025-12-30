@@ -14,11 +14,11 @@ class LoginScreen extends StatelessWidget {
     return Obx(() {
       return Container(
         decoration: BoxDecoration(
-          color: Colors.black.withOpacity(
-            0.4,
+          color: Colors.black.withValues(
+            alpha: 0.4,
           ), // Black background with 40% opacity
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.white.withOpacity(0.5))
+          border: Border.all(color: Colors.white.withValues(alpha: 0.5)),
         ),
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
         child: TextField(
@@ -31,8 +31,8 @@ class LoginScreen extends StatelessWidget {
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: GoogleFonts.poppins(
-              color: Colors.white.withOpacity(
-                0.6,
+              color: Colors.white.withValues(
+                alpha: 0.6,
               ), // Semi-transparent white hint
               fontSize: 16,
               fontWeight: FontWeight.w300,
@@ -47,7 +47,7 @@ class LoginScreen extends StatelessWidget {
                         obscureText.value
                             ? Icons.visibility_off_outlined
                             : Icons.visibility_outlined,
-                        color: Colors.white.withOpacity(0.7),
+                        color: Colors.white.withValues(alpha: 0.7),
                         size: 24,
                       ),
                     ),
@@ -81,12 +81,11 @@ class LoginScreen extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          // Background(),
           DeepBlueGradientBackground(),
           Container(
             padding: EdgeInsets.symmetric(
               horizontal: 25,
-              vertical: Get.height * 0.1,
+              // vertical: Get.height * 0.1,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -134,9 +133,9 @@ class LoginScreen extends StatelessWidget {
                 _buildCustomInput("Enter password", true),
                 SizedBox(height: Get.height * 0.005),
                 SizedBox(
-                  width: Get.width*0.5,
+                  width: Get.width * 0.5,
                   child: Btn(
-                    onClick: () {},
+                    onClick: () {Get.toNamed(AppPages.home);},
                     label: "Unlock",
                     fontWeight: FontWeight.w500,
                     bgColor: Colors.white,
