@@ -61,92 +61,100 @@ class _BodychartHeatmapState extends State<BodychartHeatmap> {
   // --- Core Logic: Map SVG Path IDs to Canonical Part Names ---
   static const Map<String, String> _pathToPartMap = {
     // Front View
-    'head-1': 'head',
-    'neck-front-right': 'neck', 'neck-front-left': 'neck',
-    'chest-left-top': 'chest', 'chest-right-top': 'chest',
-    'shoulder-right-top': 'shoulder', 'shoulder-left-top': 'shoulder',
-    'arm-front-right-1': 'arm',
-    'arm-front-right-2': 'arm',
-    'arm-front-right-3': 'arm',
-    'arm-front-right-4': 'arm', 'arm-front-right-5': 'arm',
-    'arm-front-left-1': 'arm',
-    'arm-front-left-2': 'arm',
-    'arm-front-left-3': 'arm',
-    'arm-front-left-4': 'arm',
-    // Hands/Palms
-    'hand-front-left-1': 'hand', 'hand-front-right-1': 'hand',
-    'abs-front-1': 'abs',
-    'abs-front-2': 'abs',
-    'abs-front-3': 'abs',
-    'abs-front-4': 'abs',
-    'abs-front-5': 'abs',
-    'abs-front-6': 'abs',
-    'abs-front-7': 'abs',
-    'abs-front-8': 'abs',
-    'abs-front-9': 'abs',
-    'abs-front-10': 'abs',
-    'abs-front-11': 'abs',
-    'abs-front-12': 'abs',
-    'abs-front-13': 'abs',
-    'abs-front-14': 'abs',
-    'abs-front-15': 'abs',
-    'abs-front-16': 'abs',
-    'abs-front-17': 'abs',
-    'abs-front-18': 'abs',
-    'abs-front-19': 'abs',
-    'abs-front-20': 'abs',
-    'leg-front-left-1': 'leg',
-    'leg-front-right-1': 'leg',
-    'leg-front-left-2': 'leg',
-    'leg-front-mid-left-1': 'leg',
-    'leg-front-mid-right-1': 'leg',
-    'leg-front-left-3': 'leg',
-    'leg-front-mid-left-2': 'leg',
-    'leg-front-mid-right-2': 'leg',
-    'leg-front-right-2': 'leg',
-    'foot-front-left-1': 'leg',
-    'foot-front-left-2': 'leg',
-    'foot-front-mid-left': 'leg',
-    'foot-front-mid-right': 'leg',
-    'foot-front-right-1': 'leg',
-    'foot-front-right-2': 'leg',
-    'foot-front-toes-left': 'foot',
-    'foot-front-toes-right': 'foot',
+    'head-1': 'front-head',
+    'neck-front-right': 'front-neck-right',
+    'neck-front-left': 'front-neck-left',
+    'chest-left-top': 'front-chest-left',
+    'chest-right-top': 'front-chest-right',
+    'shoulder-right-top': 'front-shoulder-right',
+    'shoulder-left-top': 'front-shoulder-left',
+    'arm-front-right-1': 'front-arm-right',
+    'arm-front-right-2': 'front-arm-right',
+    'arm-front-right-3': 'front-arm-right',
+    'arm-front-right-4': 'front-arm-right',
+    'arm-front-right-5': 'front-arm-right',
+    'arm-front-left-1': 'front-arm-left',
+    'arm-front-left-2': 'front-arm-left',
+    'arm-front-left-3': 'front-arm-left',
+    'arm-front-left-4': 'front-arm-left',
+    'hand-front-left-1': 'front-palm-left',
+    'hand-front-right-1': 'front-palm-right',
+    'abs-front-1': 'front-abs',
+    'abs-front-2': 'front-abs',
+    'abs-front-3': 'front-abs',
+    'abs-front-4': 'front-abs',
+    'abs-front-5': 'front-abs',
+    'abs-front-6': 'front-hip-left',
+    'abs-front-7': 'front-hip-right',
+    'abs-front-8': 'front-abs',
+    'abs-front-9': 'front-abs',
+    'abs-front-10': 'front-abs',
+    'abs-front-11': 'front-abs',
+    'abs-front-12': 'front-abs',
+    'abs-front-13': 'front-abs',
+    'abs-front-14': 'front-abs',
+    'abs-front-15': 'front-abs',
+    'abs-front-16': 'front-abs',
+    'abs-front-17': 'front-abs',
+    'abs-front-18': 'front-abs',
+    'abs-front-19': 'front-abs',
+    'abs-front-20': 'front-abs',
+    'leg-front-left-1': 'front-leg-left',
+    'leg-front-right-1': 'front-leg-right',
+    'leg-front-left-2': 'front-leg-left',
+    'leg-front-mid-left-1': 'front-leg-left',
+    'leg-front-mid-right-1': 'front-leg-right',
+    'leg-front-left-3': 'front-leg-left',
+    'leg-front-mid-left-2': 'front-leg-left',
+    'leg-front-mid-right-2': 'front-leg-right',
+    'leg-front-right-2': 'front-leg-right',
+    'foot-front-left-1': 'front-knee-left',
+    'foot-front-left-2': 'front-knee-left',
+    'foot-front-mid-left': 'front-knee-left',
+    'foot-front-mid-right': 'front-knee-right',
+    'foot-front-right-1': 'front-knee-right',
+    'foot-front-right-2': 'front-knee-right',
+    'foot-front-toes-left': 'front-foot-left',
+    'foot-front-toes-right': 'front-foot-right',
 
     // Back View
-    'head-back-1': 'head',
-    'neck-back-right': 'neck', 'neck-back-left': 'neck',
-    'shoulder-back-right-1': 'shoulder', 'shoulder-back-left-1': 'shoulder',
-    'arm-back-left-1': 'arm',
-    'arm-back-left-2': 'arm',
-    'arm-back-left-3': 'arm',
-    'arm-back-right-1': 'arm',
-    'arm-back-right-2': 'arm',
-    'arm-back-right-3': 'arm',
-    'hand-back-right-1': 'hand', 'hand-back-left-1': 'hand',
-    'back-mid-right-1': 'back',
-    'back-mid-left-1': 'back',
-    'back-left-top': 'back',
-    'back-right-top': 'back',
-    'back-mid-right-2': 'back',
-    'back-mid-left-2': 'back',
-    'butt-left': 'butt',
-    'butt-right': 'butt',
-    'butt-mid-right-1': 'butt',
-    'butt-mid-left-1': 'butt',
-    'leg-back-right-1': 'leg',
-    'leg-back-right-2': 'leg',
-    'leg-back-mid-right': 'leg',
-    'leg-back-left-1': 'leg',
-    'leg-back-left-2': 'leg',
-    'leg-back-mid-left': 'leg',
-    'leg-back-right-3': 'leg',
-    'leg-back-right-4': 'leg',
-    'leg-back-right-5': 'leg',
-    'leg-back-mid-right-2': 'leg',
-    'leg-back-mid-left-2': 'leg',
-    'leg-back-left-3': 'leg',
-    'leg-back-right-6': 'leg', 'leg-back-left-4': 'leg',
+    'head-back-1': 'back-head',
+    'neck-back-right': 'back-neck-right',
+    'neck-back-left': 'back-neck-left',
+    'shoulder-back-right-1': 'back-shoulder-right',
+    'shoulder-back-left-1': 'back-shoulder-left',
+    'arm-back-left-1': 'back-arm-left',
+    'arm-back-left-2': 'back-arm-left',
+    'arm-back-left-3': 'back-arm-left',
+    'arm-back-right-1': 'back-arm-right',
+    'arm-back-right-2': 'back-arm-right',
+    'arm-back-right-3': 'back-arm-right',
+    'hand-back-right-1': 'back-hand-right',
+    'hand-back-left-1': 'back-hand-left',
+    'back-mid-right-1': 'back-upper-right',
+    'back-mid-left-1': 'back-upper-left',
+    'back-left-top': 'back-upper-left',
+    'back-right-top': 'back-upper-right',
+    'back-mid-right-2': 'back-mid-right',
+    'back-mid-left-2': 'back-mid-left',
+    'butt-left': 'back-butt-left',
+    'butt-right': 'back-butt-right',
+    'butt-mid-right-1': 'back-butt-right',
+    'butt-mid-left-1': 'back-butt-left',
+    'leg-back-right-1': 'back-leg-right',
+    'leg-back-right-2': 'back-leg-right',
+    'leg-back-mid-right': 'back-leg-right',
+    'leg-back-left-1': 'back-leg-left',
+    'leg-back-left-2': 'back-leg-left',
+    'leg-back-mid-left': 'back-leg-left',
+    'leg-back-right-3': 'back-leg-right',
+    'leg-back-right-4': 'back-leg-right',
+    'leg-back-right-5': 'back-leg-right',
+    'leg-back-mid-right-2': 'back-leg-right',
+    'leg-back-mid-left-2': 'back-leg-left',
+    'leg-back-left-3': 'back-leg-left',
+    'leg-back-right-6': 'back-leg-right',
+    'leg-back-left-4': 'back-leg-left',
   };
 
   // --- Utility Methods ---
@@ -154,16 +162,20 @@ class _BodychartHeatmapState extends State<BodychartHeatmap> {
 
   // Calculates the fill color based on the selected intensity value
   String fillSvg(String part) {
-    // Highlight hovered or active parts
+    // Highlight hovered or active parts with high priority
     if (part == _hoveredPart || part == _activePart) {
       return widget.baseColor
           .withValues(alpha: 0.9)
           .toHex(leadingHashSign: true);
     }
-    return widget.selectedParts.containsKey(part) &&
-            widget.selectedParts[part]! > 0
-        ? widget.baseColor.toHex(leadingHashSign: true)
-        : defaultColor();
+
+    // Check if this part is persistently selected
+    if (widget.selectedParts.containsKey(part) &&
+        widget.selectedParts[part]! > 0) {
+      return widget.baseColor.toHex(leadingHashSign: true);
+    }
+
+    return defaultColor();
   }
 
   // Calculates the opacity based on the selected intensity value
@@ -200,16 +212,33 @@ class _BodychartHeatmapState extends State<BodychartHeatmap> {
     return steps[index];
   }
 
-  // Calculates the stroke width for hover/active states
+  // Calculates the stroke width for hover/active/selected states
   String getStrokeWidth(String part) {
+    if (part == _activePart) return '3';
     if (part == _hoveredPart) return '2';
-    if (part == _activePart) return '2.5';
+    // Persistent highlight for selected parts
+    if (widget.selectedParts.containsKey(part) &&
+        widget.selectedParts[part]! > 0) {
+      return '1.5';
+    }
     return '0';
   }
 
-  // Gets stroke color for hover/active states
+  // Gets stroke color for hover/active/selected states
   String getStrokeColor(String part) {
-    if (part == _hoveredPart || part == _activePart) {
+    if (part == _activePart) {
+      return Colors.white.toHex(
+        leadingHashSign: true,
+      ); // Bright white for active tap
+    }
+    if (part == _hoveredPart) {
+      return widget.baseColor
+          .withValues(alpha: 1.0)
+          .toHex(leadingHashSign: true);
+    }
+    // Persistent highlight for selected parts
+    if (widget.selectedParts.containsKey(part) &&
+        widget.selectedParts[part]! > 0) {
       return widget.baseColor
           .withValues(alpha: 1.0)
           .toHex(leadingHashSign: true);
@@ -321,11 +350,15 @@ class _BodychartHeatmapState extends State<BodychartHeatmap> {
         },
         onTapUp: (details) {
           final localTapOffset = details.localPosition;
-          final tappedPart = _hitTestPath(localTapOffset);
+          final tappedPart = _hitTestPath(
+            localTapOffset,
+          ); // Returns hyphenated ID
 
           if (tappedPart != null) {
             widget.onPartTap?.call(tappedPart);
-            debugPrint('Tapped on part: $tappedPart (Shape Hit)');
+            debugPrint(
+              'Tapped on part: ${tappedPart.replaceAll("-", " ")} (Shape Hit)',
+            );
           }
 
           // Reset active state after a short delay
@@ -396,8 +429,8 @@ class _BodychartHeatmapState extends State<BodychartHeatmap> {
   // --- Full SVG Data (Reconstructed) ---
   String data() {
     String svgContent = '''
-<svg width="319" height="295" viewBox="0 0 319 295" fill="none" xmlns="http://www.w3.org/2000/svg">
-''';
+          <svg width="319" height="295" viewBox="0 0 319 295" fill="none" xmlns="http://www.w3.org/2000/svg">
+        ''';
 
     // Helper to generate a single path string with dynamic styling
     String generatePath(String id, String d, String canonicalPart) {
@@ -405,7 +438,26 @@ class _BodychartHeatmapState extends State<BodychartHeatmap> {
       final opacity = fillOpacity(canonicalPart);
       final strokeWidth = getStrokeWidth(canonicalPart);
       final strokeColor = getStrokeColor(canonicalPart);
-      return '<path id="$id" d="$d" fill="$fillColor" fill-opacity="$opacity" stroke="$strokeColor" stroke-width="$strokeWidth"/>';
+
+      String transformAttr = '';
+      if (canonicalPart == _activePart) {
+        // Look up center of the path for "scale-in-place"
+        final path = _pathCache[id];
+        if (path != null) {
+          final bounds = path.getBounds();
+          final cx = bounds.center.dx;
+          final cy = bounds.center.dy;
+          const scale = 1.2;
+          // matrix(a, b, c, d, tx, ty)
+          // tx = cx * (1 - scale)
+          // ty = cy * (1 - scale)
+          final tx = cx * (1 - scale);
+          final ty = cy * (1 - scale);
+          transformAttr = ' transform="matrix($scale, 0, 0, $scale, $tx, $ty)"';
+        }
+      }
+
+      return '<path id="$id" d="$d" fill="$fillColor" fill-opacity="$opacity" stroke="$strokeColor" stroke-width="$strokeWidth"$transformAttr/>';
     }
 
     // Iterate through the paths to build the SVG dynamically
